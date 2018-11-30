@@ -41,7 +41,7 @@ const siteConfig = {
   headerLinks: [
     {doc: 'data_index', label: 'Data'},
     {doc: 'quick_start_index', label: 'Quick Start'},
-    {doc: 'tutorial_index', label: 'Tutorials'},
+    // {doc: 'tutorial_index', label: 'Tutorials'},
     {blog: true, label: 'Blog'},
   ],
 

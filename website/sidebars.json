@@ -2,14 +2,9 @@
   "Data": {
     "Data": [
       "data_index"
-    ]
-  },
-  "Tutorials": {
+    ],
     "Getting Started": [
       "quick_start_index"
-    ],
-    "Tutorials": [
-      "tutorial_index"
     ]
   }
 }

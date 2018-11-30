@@ -47,10 +47,10 @@ const PopularTopicsSection = ({ language }) => (
             <b><a href={docUrl('quick_start_index', language)}>Quick Start Guide.</a></b>
             {' '}Get started exploring your data within 30 minutes.
           </p>
-          <p>
+          {/* <p>
             <b><a href={docUrl('tutorial_index', language)}>Tutorials.</a></b>
             {' '}Learn different approaches to explore your data.
-          </p>
+          </p> */}
           {/* <p>
             <b><a href={docUrl('architecture_index', language)}>Architecture</a>.</b>
             {' '}Explains various layers that make up Home Assistant.
