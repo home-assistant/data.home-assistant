@@ -40,5 +40,5 @@ The difference between `last_changed` and `last_updated` is that `last_changed` 
 Users are usually not so interested in state updates that only changed the attributes. Attribute only changes can be triggered by a light changing color or a media player changing song (which happens every ~3 minutes!). Since we maintain both `last_changed` and `last_updated`, it's easy to filter for just the states where the state was changed:
 
 ```sql
-SELECT * FROM EVENTS WHERE last_changed = last_updated
+SELECT * FROM events WHERE last_changed = last_updated
 ```
