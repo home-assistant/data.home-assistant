@@ -5,30 +5,84 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const React = require('react');
+const React = require("react");
 
-const CompLibrary = require('../../core/CompLibrary.js');
+const CompLibrary = require("../../core/CompLibrary.js");
 const MarkdownBlock = CompLibrary.MarkdownBlock; /* Used to read markdown */
 const Container = CompLibrary.Container;
 const GridBlock = CompLibrary.GridBlock;
 
-const siteConfig = require(process.cwd() + '/siteConfig.js');
+const siteConfig = require(process.cwd() + "/siteConfig.js");
 
 function imgUrl(img) {
-  return siteConfig.baseUrl + 'img/' + img;
+  return siteConfig.baseUrl + "img/" + img;
 }
 
 function docUrl(doc, language) {
-  return siteConfig.baseUrl + 'docs/' + (language ? language + '/' : '') + doc + ".html";
+  return (
+    siteConfig.baseUrl +
+    "docs/" +
+    (language ? language + "/" : "") +
+    doc +
+    ".html"
+  );
 }
 
 function pageUrl(page, language) {
-  return siteConfig.baseUrl + (language ? language + '/' : '') + page;
+  return siteConfig.baseUrl + (language ? language + "/" : "") + page;
 }
 
-
 const PopularTopicsSection = ({ language }) => (
-  <div className="introSection lightBackground">
+  <React.Fragment>
+    <div className="introSection lightBackground">
+      <Container>
+        <div
+          style={{
+            display: "flex",
+            flexFlow: "row wrap",
+            justifyContent: "space-evenly"
+          }}
+        >
+          <div
+            style={{ display: "flex", flexDirection: "column", maxWidth: 420 }}
+          >
+            <h2>Explore Your Data</h2>
+            <p>
+              The Home Assistant Data Science portal is your one stop shop to
+              get started exploring the data of your home. We will teach you
+              about the data that Home Assistant tracks for you and we'll get
+              you up and running with Jupyter Lab, a data science environment,
+              to explore your own data.
+            </p>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              maxWidth: 420
+            }}
+          >
+            <h2>Documentation Structure</h2>
+            <p>
+              <b>
+                <a href={docUrl("data_index", language)}>Data Primer.</a>
+              </b>{" "}
+              Introduction to the available data in Home Assistant. Learn all
+              about events, states and context.
+            </p>
+            <p>
+              <b>
+                <a href={docUrl("quick_start_index", language)}>
+                  Quick Start Guide.
+                </a>
+              </b>{" "}
+              In 10 minutes you will set up a data science environment and run
+              your first reports.
+            </p>
+          </div>
+        </div>
+      </Container>
+    </div>
     <Container>
       <div
         style={{
@@ -37,72 +91,38 @@ const PopularTopicsSection = ({ language }) => (
           justifyContent: "space-evenly"
         }}
       >
-        <div style={{ display: "flex", flexDirection: "column", maxWidth: 420 }}>
-          <h2>Documentation Structure</h2>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            maxWidth: 420
+          }}
+        >
+          <h2>You own your data</h2>
           <p>
-            <b><a href={docUrl('data_index', language)}>Data Primer.</a></b>
-            {' '}Introduction to the available data in Home Assistant.
+            With Home Assistant we are taking a different approach to smart home
+            data. All data that is collected is to serve you, and only you.
           </p>
-          <p>
-            <b><a href={docUrl('quick_start_index', language)}>Quick Start Guide.</a></b>
-            {' '}Get started exploring your data within 30 minutes.
-          </p>
-          {/* <p>
-            <b><a href={docUrl('tutorial_index', language)}>Tutorials.</a></b>
-            {' '}Learn different approaches to explore your data.
-          </p> */}
-          {/* <p>
-            <b><a href={docUrl('architecture_index', language)}>Architecture</a>.</b>
-            {' '}Explains various layers that make up Home Assistant.
-          </p>
-          <p>
-            <b><a href={docUrl('frontend_index', language)}>Frontend</a>.</b>
-            {' '}Explains how to develop the user interface of Home Assistant.
-          </p>
-          <p>
-            <b><a href={docUrl('development_index', language)}>Backend</a>.</b>
-            {' '}Explains how to build new integrations for Home Assistant.
-          </p>
-          <p>
-            <b><a href={docUrl('misc', language)}>Misc</a>.</b>
-            {' '}External APIs, Internationalization, asyncio, Hass.io add-ons, updating documentation.
-          </p> */}
-        </div>
-
-        {false && <div style={{ display: "flex", flexDirection: "column" }}>
-          <h2>Popular topics</h2>
-          <ul style={{ flex: "1" }}>
-          <li>Example 1</li>
-          <li>Example 2</li>
-          {/* <li><a href={docUrl("development_index", language)}>
-              Add a new integration
-            </a></li>
-            <li><a href={docUrl("internationalization_index", language)}>
-              Translate Home Assistant
-            </a></li>
-            <li><a href={docUrl("frontend_index", language)}>
-              Improve the frontend
-            </a></li>
-            <li><a href={docUrl("external_api_rest", language)}>
-              Extract data from the Home Assistant API
-            </a></li> */}
-          </ul>
-          {/* <h2>Source Code</h2>
           <ul>
-          <li><a href="https://github.com/home-assistant/home-assistant">
-              Home Assistant
-            </a></li>
-            <li><a href="https://github.com/home-assistant/home-assistant-polymer">
-              Home Assistant Frontend
-            </a></li>
-          </ul> */}
-
-        </div>}
+            <li>We believe that your data is yours, all of it.</li>
+            <li>
+              We believe that you don't need to share your data to learn from
+              it.
+            </li>
+          </ul>
+        </div>
+        <div
+          style={{
+            maxWidth: 420,
+            padding: 30
+          }}
+        >
+          <img src={imgUrl("graphic/own-data.svg")} />
+        </div>
       </div>
     </Container>
-  </div>
+  </React.Fragment>
 );
-
 
 class Button extends React.Component {
   render() {
@@ -117,7 +137,7 @@ class Button extends React.Component {
 }
 
 Button.defaultProps = {
-  target: '_self',
+  target: "_self"
 };
 
 const SplashContainer = props => (
@@ -141,7 +161,9 @@ const ProjectTitle = props => (
       <small>Data Science Portal</small>
     </h2>
     <div>
-      <a href="https://www.home-assistant.io">Not a data scientist? Go to the normal website</a>
+      <a href="https://www.home-assistant.io">
+        Not a data scientist? Go to the normal website
+      </a>
     </div>
   </div>
 );
@@ -156,10 +178,10 @@ const PromoSection = props => (
 
 class HomeSplash extends React.Component {
   render() {
-    let language = this.props.language || '';
+    let language = this.props.language || "";
     return (
       <SplashContainer>
-        <Logo img_src={imgUrl('logo-responsive.svg')} />
+        <Logo img_src={imgUrl("logo-responsive.svg")} />
         <div className="inner">
           <ProjectTitle />
           {/* <PromoSection>
@@ -173,11 +195,10 @@ class HomeSplash extends React.Component {
   }
 }
 
-
 const IntroSection = ({ language }) => (
   <div className="videoSection">
     <Container>
-      <div style={{maxWidth: 600, margin: 'auto'}}>
+      <div style={{ maxWidth: 600, margin: "auto" }}>
         <div className="videoWrapper">
           <iframe
             width={560}
@@ -190,18 +211,18 @@ const IntroSection = ({ language }) => (
       </div>
     </Container>
   </div>
-)
+);
 
 class Index extends React.Component {
   render() {
-    let language = this.props.language || '';
+    let language = this.props.language || "";
 
     return (
       <div>
         <HomeSplash language={language} />
         <div className="mainContainer indexPage">
-        <PopularTopicsSection language={language} />
-        {/* <IntroSection language={language} /> */}
+          <PopularTopicsSection language={language} />
+          {/* <IntroSection language={language} /> */}
         </div>
       </div>
     );
