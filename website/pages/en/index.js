@@ -40,7 +40,8 @@ const PopularTopicsSection = ({ language }) => (
           style={{
             display: "flex",
             flexFlow: "row wrap",
-            justifyContent: "space-evenly"
+            justifyContent: "space-evenly",
+            paddingBottom: 18,
           }}
         >
           <div
