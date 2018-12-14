@@ -23,7 +23,7 @@ To install JupyterLab, we're going to use the JupyterLab Lite add-on by the Comm
 
 JupyterLab works with Jupyter Notebooks. Think of a notebook like a Word document that can also contain code to explore your data.
 
-We have prepared a few notebooks for you that will help you get started. Let's start with the notebook `~ GETTING STARTED.ipynb` that was installed as part of the add-on. You can find it in the left sidebar. This notebook has been prepared by us to automatically read your Home Assistant data and generate a few interesting statistics about your data!
+We have prepared a few notebooks for you that will help you get started. Let's start with the notebook `GETTING STARTED.ipynb` that was installed as part of the add-on. You can find it in the left sidebar. This notebook has been prepared by us to automatically read your Home Assistant data and generate a few interesting statistics about your data!
 
 To run the report, click on "Cell" in the top menubar and click on "Run All". The notebook will now generate the full report.
 
