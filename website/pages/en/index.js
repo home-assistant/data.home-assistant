@@ -77,7 +77,7 @@ const PopularTopicsSection = ({ language }) => (
                   Quick Start Guide.
                 </a>
               </b>{" "}
-              In 10 minutes you will set up a data science environment and run
+              In 15 minutes you will set up a data science environment and run
               your first reports.
             </p>
           </div>
