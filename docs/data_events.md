@@ -70,7 +70,3 @@ All events are stored in the database in a table named `events`. The important f
 | created         | Column(DateTime(timezone=True), default=datetime.utcnow) |
 | context_id      | Column(String(36), index=True)                           |
 | context_user_id | Column(String(36), index=True)                           |
-
-## Example queries
-
-TBD
