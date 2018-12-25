@@ -2,6 +2,7 @@
 title: Data Science portal for Home Assistant launched
 author: Robin Cole
 authorURL: http://twitter.com/robmarkcole
+authorImageURL: https://twitter.com/robmarkcole/profile_image?size=normal
 ---
 
 “Data is the new oil” is a popular expression on the internet, and whether or not you agree with that statement, it does summarise several points about data. Firstly, data, and in particular personal data, holds tremendous value. Large corporations realise this, and will go to extreme lengths to gain access to personal data since it contains insights into your behaviour. Insights generated from that data allows them to better target their marketing, giving them an edge over the competition. Secondly, data, like oil requires processing before it is useful. Whilst oil is processed in refineries, data is processed by data scientists, who use various statistical techniques to separate signal from noise. The signals they generate are fed into models which aim to predict future behaviour based on historical data.
