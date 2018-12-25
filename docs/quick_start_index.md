@@ -18,6 +18,8 @@ To install JupyterLab, we're going to use the JupyterLab Lite add-on by the Comm
 - Once installed, it will open the JupyterLab Lite add-on page.
 - Click on "START" to start the JupyterLab Lite add-on.
 - Now click on "OPEN WEB UI" to open JupyterLab
+- You will be prompted for a username and password. You can use the same username/password as that you use to log in to Home Assistant.
+- If you get a blank page with "502 Gateway not ready", wait a minute and hit refresh in your browser. JupyterLab can take some time to start up.
 
 ## Running your first report
 
@@ -25,14 +27,12 @@ JupyterLab works with Jupyter Notebooks. Think of a notebook like a Word documen
 
 We have prepared a few notebooks for you that will help you get started. Let's start with the notebook `GETTING STARTED.ipynb` that was installed as part of the add-on. You can find it in the left sidebar. This notebook has been prepared by us to automatically read your Home Assistant data and generate a few interesting statistics about your data!
 
-To run the report, click on "Run" in the top menubar and click on "Run All Cells". The notebook will now generate the full report. When you run a cell, the cell status will be updated to `[*]`, this means that it is being executed. Once executed, it will change to `[<number>]` (represents order cells are executed).
+To run the report, click on "Run" in the top menubar and click on "Run All Cells". The notebook will now generate the full report. Depending on the size of your database, this might take some time. The little square brackets with an asterisk (`[*]`) to the left of Python code (a cell) will indicate what is currently being executed or about to be executed. Once executed, it will change to `[<number>]` (number represents the order cells are executed).
 
-You can copy the getting started notebook to make changes or make the changes directly in the getting started notebook. After each change, just run the cell (by clicking the "play" button in the toolbar). Executing a cell will run the Python code and show the latest results.
-
-The Getting Started notebook is powered by a Python package called [HASS Data Detective](https://github.com/robmarkcole/HASS-data-detective), that was specifically created to do data science with Home Assistant data. It is able to automatically detect your Home Assistant installation and connect to the database.
+The cool thing about these reports is that you can edit the Python code and execute it again to get the latest results, you don't even need to execute the whole report again to see most changes. After each change, just run the cell (by clicking the "play" button in the toolbar). Executing a cell will run the Python code and show the latest results!
 
 ## What's next
 
 You now have all tools available to you to do data science. If you want to see some more cool notebooks that people have created for Home Assistant, the add-on has installed the Home Assistant Notebook collection. You can also check out [the HASS Data Detective usage examples](https://github.com/robmarkcole/HASS-data-detective#simple-query). If you want to see how it can be used for now-Home Assistant related data, the add-on has also installed a couple of other interesting notebook examples.
 
-If you want to learn more about what data is available, check out the [data primer](data_index.md).
+If you want to learn more about what data Home Assistant tracks, check out the [data primer](data_index.md).
