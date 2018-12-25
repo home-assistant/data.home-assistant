@@ -2,7 +2,7 @@
 title: Data Science portal for Home Assistant launched
 author: Robin Cole
 authorURL: http://twitter.com/robmarkcole
-authorImageURL: https://twitter.com/robmarkcole/profile_image?size=normal
+authorImageURL: https://github.com/robmarkcole.png?size=60
 ---
 
 _TL;DR: Today we launch a new data portal to get users up and running with their own data science environment running their first reports in 15 minutes. [Get started](/docs/quick_start_index.html)._
