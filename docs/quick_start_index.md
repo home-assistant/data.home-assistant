@@ -3,7 +3,7 @@ title: "Quick Start to Home Assistant Data Science"
 sidebar_label: "Introduction"
 ---
 
-In this quick start guide, we're going to show you how to set up and use JupyterLab, a data science environment. JupyterLab is the tool of choice for data scientists around the globe. Using JupyterLab we will run some reports on your own data. All reports are editable so you can quickly start experimenting and exploring more!
+In this quick start guide, we're going to show you how to set up and use [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/), a data science environment. JupyterLab is the tool of choice for data scientists around the globe. Using JupyterLab we will run some reports on your own data. All reports are editable so you can quickly start experimenting and exploring more!
 
 This guide is assuming that you have [a Hass.io installation](https://www.home-assistant.io/getting-started/) up and running. Hass.io is our all-in-one platform that runs Home Assistant and can easily be extended with other software, like JupyterLab.
 
@@ -13,7 +13,7 @@ To install JupyterLab, we're going to use the JupyterLab Lite add-on by the Comm
 
 - Open Home Assistant
 - Click on Hass.io, Add-Ons
-- Add the Edge Community Add-ons as a new repository with the url `https://github.com/hassio-addons/repository-edge` and click on "Add"
+- Add the Edge Community Add-ons as a new repository with the URL `https://github.com/hassio-addons/repository-edge` and click on "Add"
 - Scroll down to the new section for Edge Community Add-ons and click the install button on JupyterLab Lite. Installation can take a couple of minutes depending on your internet speed.
 - Once installed, it will open the JupyterLab Lite add-on page.
 - Click on "START" to start the JupyterLab Lite add-on.
