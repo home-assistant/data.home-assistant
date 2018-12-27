@@ -28,8 +28,6 @@ This event is fired when an automation is triggered. An automation will trigger 
 | name      | Name of the automation that was triggered.       |
 | entity_id | Identifier of the automation that was triggered. |
 
-> This is not available until [this PR](https://github.com/home-assistant/home-assistant/pull/18765) is merged.
-
 ### script_started
 
 This event is fired when a script is run. A script can be invoked by a user or triggered by an automation. The resulting changes can be tracked because all related events will share the same context as this event.
@@ -38,8 +36,6 @@ This event is fired when a script is run. A script can be invoked by a user or t
 | --------- | -------------------------------------- |
 | name      | Name of the script that was run.       |
 | entity_id | Identifier of the script that was run. |
-
-> This is not available until [this PR](https://github.com/home-assistant/home-assistant/pull/18765) is merged.
 
 ### service_registered
 
@@ -70,3 +66,5 @@ All events are stored in the database in a table named `events`. The important f
 | created         | Column(DateTime(timezone=True), default=datetime.utcnow) |
 | context_id      | Column(String(36), index=True)                           |
 | context_user_id | Column(String(36), index=True)                           |
+
+Further details about the [database schema](https://www.home-assistant.io/docs/backend/database/#schema) are available in the official documentation.
