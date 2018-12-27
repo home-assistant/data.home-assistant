@@ -9,12 +9,12 @@ This guide is assuming that you have [a Hass.io installation](https://www.home-a
 
 ## Installing JupyterLab
 
-To install JupyterLab, we're going to use the JupyterLab Lite add-on by the Communty Add-Ons project. This add-on is currently only available in the edge repository. To get started:
+To install JupyterLab, we're going to use the JupyterLab Lite add-on by the Communty Add-ons project. To get started:
 
 - Open Home Assistant
 - Click on Hass.io, Add-Ons
 - Add the Community Add-ons as a new repository with the URL `https://github.com/hassio-addons/repository` and click on "Add"
-- Scroll down to the new section for Edge Community Add-ons and click the install button on JupyterLab Lite. Installation can take a couple of minutes depending on your internet speed.
+- Scroll down to the new section for Community Add-ons and click the install button on JupyterLab Lite. Installation can take a couple of minutes depending on your internet speed.
 - Once installed, it will open the JupyterLab Lite add-on page.
 - Click on "START" to start the JupyterLab Lite add-on.
 - Now click on "OPEN WEB UI" to open JupyterLab
