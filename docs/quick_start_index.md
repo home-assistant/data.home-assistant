@@ -7,6 +7,8 @@ In this quick start guide, we're going to show you how to set up and use [Jupyte
 
 This guide is assuming that you have [a Hass.io installation](https://www.home-assistant.io/getting-started/) up and running. Hass.io is our all-in-one platform that runs Home Assistant and can easily be extended with other software, like JupyterLab.
 
+Non-Hasss.io users have to install JupyterLab themself.
+
 ## Installing JupyterLab
 
 To install JupyterLab, we're going to use the JupyterLab Lite add-on by the Communty Add-ons project. To get started:
