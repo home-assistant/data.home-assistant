@@ -34,7 +34,7 @@ cd ~/Notebook
 git clone https://github.com/home-assistant/home-assistant-notebooks.git
 ```
 
-## Launch Jupyter Lab as systemd service
+## Launch Jupyter Lab
 
 Launch the Jupyter Lab server from the command line.
 
