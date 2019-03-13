@@ -12,8 +12,6 @@ This guide explains the installation and setup of JupyterLab and expects a fresh
 Updating the system and installing required dependencies.
 
 ```bash
-sudo apt update
-sudo apt upgrade
 sudo apt install python3-pip
 sudo pip3 install jupyterlab
 sudo pip3 install HASS-data-detective
@@ -38,13 +36,10 @@ git clone https://github.com/home-assistant/home-assistant-notebooks.git
 
 ## Launch Jupyter Lab as systemd service
 
-Replace `User=ubuntu` by your own user in `jupyterlab.service`.
+Launch the Jupyter Lab server from the command line.
 
 ```bash
-sudo curl -o /etc/systemd/system/jupyterlab.service https://gist.githubusercontent.com/cgtobi/11439422a65610680127dcb2d507482a/raw/0ba0574bafc160c1cc9edf0d1361c7ae62af7453/jupyterlab.service
-sudo systemctl daemon-reload
-sudo systemctl enable jupyterlab.service
-sudo systemctl start jupyterlab.service
+jupyter lab --port 8888 --ip=0.0.0.0 --notebook-dir=~/Notebook
 ```
 
 ## Create read-only database user
