@@ -5,11 +5,11 @@ sidebar_label: "Introduction"
 
 In this quick start guide, we're going to show you how to set up and use [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/), a data science environment. JupyterLab is the tool of choice for data scientists around the globe. Using JupyterLab we will run some reports on your own data. All reports are editable so you can quickly start experimenting and exploring more!
 
-This guide explains the installation and setup of JupyterLab and expects a fresh Ubuntu 18.10 installation. But it should be easy to adapt it for most other platforms.
+This guide explains the installation and setup of JupyterLab and expects a fresh Ubuntu 18.10 installation. However, it should be easy to adapt it for most other platforms.
 
 ## Preparing the system
 
-Updating the system and installing required dependencies.
+Updating the system and installing the required dependencies.
 
 ```bash
 sudo apt install python3-pip
@@ -20,6 +20,7 @@ sudo pip3 install sqlalchemy
 ```
 
 *If* using _postgreSQL_:
+
 ```bash
 pip3 install psycopg2-binary
 ```
@@ -42,9 +43,9 @@ Launch the Jupyter Lab server from the command line.
 jupyter lab --port 8888 --ip=0.0.0.0 --notebook-dir=~/Notebook
 ```
 
-## Create read-only database user
+## Create a read-only database user
 
-You need a user to access your database. This guide assumes a PostgreSQL database but any other will do just as well.
+You need a user to access your database. This guide assumes a PostgreSQL database, but any other will do just as well.
 
 ### PostgreSQL
 
@@ -81,6 +82,6 @@ The cool thing about these reports is that you can edit the Python code and exec
 
 ## What's next
 
-You now have all tools available to you to do data science. If you want to see some more cool notebooks that people have created for Home Assistant, the add-on has installed the Home Assistant Notebook collection. You can also check out [the HASS Data Detective usage examples](https://github.com/robmarkcole/HASS-data-detective#simple-query). If you want to see how it can be used for now-Home Assistant related data, the add-on has also installed a couple of other interesting notebook examples.
+You now have all the tools available to you to do data science. If you want to see some more cool notebooks that people have created for Home Assistant, the add-on has installed the Home Assistant Notebook collection. You can also check out [the HASS Data Detective usage examples](https://github.com/robmarkcole/HASS-data-detective#simple-query). If you want to see how it can be used for now-Home Assistant related data, the add-on has also installed a couple of other interesting notebook examples.
 
 If you want to learn more about what data Home Assistant tracks, check out the [data primer](data_index.md).
