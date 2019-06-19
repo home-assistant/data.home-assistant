@@ -80,6 +80,15 @@ const PopularTopicsSection = ({ language }) => (
               In 15 minutes you will set up a data science environment and run
               your first reports.
             </p>
+            <p>
+              <b>
+                <a href={docUrl("quick_start_nonhassio_index", language)}>
+                  Quick Start Guide for non-hass.io users.
+                </a>
+              </b>{" "}
+              In 15 minutes you will set up a data science environment and run
+              your first reports.
+            </p>
           </div>
         </div>
       </Container>
