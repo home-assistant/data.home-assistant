@@ -13,15 +13,19 @@ If you don't use Hass.io to run Home Assistant, skip the next step and manually 
 
 To install JupyterLab, we're going to use the JupyterLab Lite add-on by the Community Add-ons project. To get started:
 
-- Open Home Assistant
 - Click on Hass.io in the panel. Choose "Add-On Store" from the menu.
 - Add the Community Add-ons as a new repository with the URL `https://github.com/hassio-addons/repository` and click on "Add".
-- Scroll down to the new section for Community Add-ons and click the install button on JupyterLab Lite. Installation can take a couple of minutes depending on your internet speed.
+- Scroll down to the new section for Community Add-ons and click the install button on **JupyterLab Lite**. Installation can take a couple of minutes depending on your internet speed.
 - Once installed, it will open the JupyterLab Lite add-on page.
 - Click on "START" to start the JupyterLab Lite add-on.
-- Now click on "OPEN WEB UI" to open JupyterLab
-- You will be prompted for a username and password. You can use the same username/password as that you use to log in to Home Assistant.
+- Now click on "OPEN WEB UI" to open JupyterLab.
+- You will be prompted for your credentials. You can use the same username and password as that you use to log in to Home Assistant.
 - If you get a blank page with "502 Gateway not ready", wait a minute and hit refresh in your browser. JupyterLab can take some time to start up.
+
+<img
+  src='/img/getting-started/hassio-jupyterlab.png'
+  alt='JupyterLab Lite Add-on after the installation'
+/>
 
 ## Running your first report
 
