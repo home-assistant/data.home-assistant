@@ -1,7 +1,7 @@
 module.exports = {
   title: 'Home Assistant',
   tagline: 'Data Science Portal',
-  url: 'Explore the data of your home',
+  url: 'https://data.home-assistant.io',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
   organizationName: 'home-assistant', // Usually your GitHub org/user name.
