@@ -3,7 +3,7 @@ module.exports = {
   tagline: 'Data Science Portal',
   url: 'https://data.home-assistant.io',
   baseUrl: '/',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.png',
   organizationName: 'home-assistant', // Usually your GitHub org/user name.
   projectName: 'data.home-assistant', // Usually your repo name.
   themeConfig: {
