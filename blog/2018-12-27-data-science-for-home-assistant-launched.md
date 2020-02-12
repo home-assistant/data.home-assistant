@@ -5,7 +5,7 @@ authorURL: http://twitter.com/robmarkcole
 authorImageURL: https://github.com/robmarkcole.png?size=60
 ---
 
-_TL;DR: Today we launch a new data portal to get users up and running with their own data science environment running their first reports in 15 minutes. [Get started](/docs/quick_start_index.html)._
+_TL;DR: Today we launch a new data portal to get users up and running with their own data science environment running their first reports in 15 minutes. [Get started](/docs/quick-start)._
 
 “Data is the new oil” is a popular expression on the internet, and whether or not you agree with that statement, it does summarise several points about data. Firstly, data, and in particular personal data, holds tremendous value. Large corporations realise this, and will go to extreme lengths to gain access to personal data since it contains insights into your behaviour. Insights generated from that data allows them to better target their marketing, giving them an edge over the competition. Secondly, data, like oil, requires processing before it is useful. Whilst oil is processed in refineries, data is processed by data scientists, who use various statistical techniques to separate signal from noise. The signals they generate are fed into models which aim to predict future behaviour based on historical data.
 
@@ -18,9 +18,9 @@ With experience and experimentation it is possible to create some really powerfu
 
 The Home Assistant Data Science website is your one-stop-shop for advice on getting started doing data science with your Home Assistant data. To accompany the website, we have created a brand new Hass.io Add-on [JupyterLab lite](https://github.com/hassio-addons/addon-jupyterlab-lite), which allows you to run a data science IDE called [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/) directly on your Raspberry Pi hosting Home Assistant. You do your data analysis locally, your data never leaves your local machine. When you build something cool, you can share the notebook without the results, so people can run it at their homes too.
 
-We have also created a Python library called the [HASS-Data-Detective](https://github.com/robmarkcole/HASS-data-detective) which makes it super easy to get started investigating your Home Assistant data using modern data science tools such as [Pandas](https://pandas.pydata.org/). 
+We have also created a Python library called the [HASS-Data-Detective](https://github.com/robmarkcole/HASS-data-detective) which makes it super easy to get started investigating your Home Assistant data using modern data science tools such as [Pandas](https://pandas.pydata.org/).
 
-To tie it all together, we created a [Getting Started notebook](https://github.com/home-assistant/home-assistant-notebooks/blob/master/~%20GETTING%20STARTED.ipynb) which shows you how to do some elementary analysis on your Home Assistant data. In 15 minutes, you can install the Jupyerlab Lite add-on and generate a report on your own data. [Try it out](/docs/quick_start_index.html).
+To tie it all together, we created a [Getting Started notebook](https://github.com/home-assistant/home-assistant-notebooks/blob/master/~%20GETTING%20STARTED.ipynb) which shows you how to do some elementary analysis on your Home Assistant data. In 15 minutes, you can install the Jupyerlab Lite add-on and generate a report on your own data. [Try it out](/docs/quick-start).
 
 Going forward, we are planning on publishing more articles here showing how you can do more advanced analysis on your Home Assistant data, show how this can feedback into your automations and highlight creations of the community.
 
