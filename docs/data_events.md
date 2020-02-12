@@ -1,5 +1,6 @@
 ---
 title: "Home Assistant Events"
+id: "events"
 sidebar_label: "Events"
 ---
 

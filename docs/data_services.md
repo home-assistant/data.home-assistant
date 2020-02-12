@@ -1,5 +1,6 @@
 ---
 title: "Home Assistant Services"
+id: "services"
 sidebar_label: "Services"
 ---
 
