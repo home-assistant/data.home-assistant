@@ -1,5 +1,6 @@
 ---
 title: "Home Assistant Recorder Runs"
+id: "recorder"
 sidebar_label: "Recorder Runs"
 ---
 

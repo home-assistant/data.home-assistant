@@ -1,5 +1,6 @@
 ---
 title: "Home Assistant Context"
+id: "context"
 sidebar_label: "Context"
 ---
 
@@ -7,10 +8,10 @@ Context is used to tie events and states together in Home Assistant. Whenever an
 
 In the following example, all events and states will share the same context:
 
-- Paulus arrives home, which updates `device_tracker.paulus_pixel` from `not_home` to `home`
-- The automation "Paulus is home" is triggered and fires `automation_triggered` event.
-- The automation calls service `light.turn_on`, which fires the `service_call` event.
-- The `light.turn_on` service turns on the light which causes an update to the state of `light.living_room`.
+-   Paulus arrives home, which updates `device_tracker.paulus_pixel` from `not_home` to `home`
+-   The automation "Paulus is home" is triggered and fires `automation_triggered` event.
+-   The automation calls service `light.turn_on`, which fires the `service_call` event.
+-   The `light.turn_on` service turns on the light which causes an update to the state of `light.living_room`.
 
 A context object contains the following fields:
 

@@ -1,11 +1,12 @@
 ---
 title: "Quick Start to Home Assistant Data Science"
+id: "quick-start"
 sidebar_label: "Introduction"
 ---
 
 In this quick start guide, we're going to show you how to set up and use [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/), a data science environment. JupyterLab is the tool of choice for data scientists around the globe. Using JupyterLab we will run some reports on your own data. All reports are editable so you can quickly start experimenting and exploring more!
 
-This guide is assuming that you have [a Hass.io installation](https://www.home-assistant.io/getting-started/) up and running. Hass.io is our all-in-one platform that runs Home Assistant and can easily be extended with other software, like JupyterLab. In case you are not using [Hass.io](https://www.home-assistant.io/getting-started/), please check out the [quick start to Home Assistant Data Science for non-hass.io users](https://data.home-assistant.io/docs/quick_start_nonhassio_index.html).
+This guide is assuming that you have [a Hass.io installation](https://www.home-assistant.io/getting-started/) up and running. Hass.io is our all-in-one platform that runs Home Assistant and can easily be extended with other software, like JupyterLab. In case you are not using [Hass.io](https://www.home-assistant.io/getting-started/), please check out the [quick start to Home Assistant Data Science for non-hass.io users](quick-start-non-hassio).
 
 If you don't use Hass.io to run Home Assistant, skip the next step and manually install [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/), [HASS Data Detective](https://pypi.org/project/HASS-data-detective/) and download the [Home Assistant notebooks](https://github.com/home-assistant/home-assistant-notebooks).
 

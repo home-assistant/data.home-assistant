@@ -1,5 +1,6 @@
 ---
 title: "Home Assistant States"
+id: "states"
 sidebar_label: "States"
 ---
 
