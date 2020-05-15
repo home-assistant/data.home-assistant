@@ -1,6 +1,6 @@
 ---
-title: "Quick Start to Home Assistant Data Science for non-hass.io users"
-id: "quick-start-non-hassio"
+title: "Quick Start to Home Assistant Data Science for Home Assistant Core users"
+id: "quick-start-core"
 sidebar_label: "Introduction"
 ---
 
