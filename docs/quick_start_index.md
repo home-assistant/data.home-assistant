@@ -6,13 +6,13 @@ sidebar_label: "Getting Start (Supervised Installations)"
 
 In this quick start guide, we're going to show you how to set up and use [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/), a data science environment. JupyterLab is the tool of choice for data scientists around the globe. Using JupyterLab we will run some reports on your own data. All reports are editable so you can quickly start experimenting and exploring more!
 
-This guide is assuming that you have [a Hass.io installation](https://www.home-assistant.io/getting-started/) up and running. Hass.io is our all-in-one platform that runs Home Assistant and can easily be extended with other software, like JupyterLab. In case you are not using [Hass.io](https://www.home-assistant.io/getting-started/), please check out the [quick start to Home Assistant Data Science for non-hass.io users](quick-start-non-hassio).
+This guide is assuming that you have [a supervised installation of Home Assistant](https://www.home-assistant.io/getting-started/) up and running, this means you have a Supervisor button on the sidebar and can install Add-Ons. Home Assistant is out all-in-one platform and can easily be extended with other software, like JupyterLab. In case you are not using [a supervised installation of Home Assistant](https://www.home-assistant.io/getting-started/), please check out the [quick start to Home Assistant Data Science for Home Assistant Core users](quick-start-non-hassio).
 
 ## Installing JupyterLab
 
 To install JupyterLab, we're going to use the JupyterLab Lite add-on by the Community Add-ons project. To get started:
 
-- Click on Hass.io in the panel. Choose "Add-On Store" from the menu.
+- Click on Supervisor in the panel. Choose "Add-On Store" from the menu.
 - Add the Community Add-ons as a new repository with the URL `https://github.com/hassio-addons/repository` and click on "Add".
 - Scroll down to the new section for Community Add-ons and click the install button on **JupyterLab Lite**. Installation can take a couple of minutes depending on your internet speed.
 - Once installed, it will open the JupyterLab Lite add-on page.
