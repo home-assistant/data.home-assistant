@@ -6,7 +6,7 @@ sidebar_label: "Getting Start (Home Assistant Core)"
 
 In this quick start guide, we're going to show you how to set up and use [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/), a data science environment. JupyterLab is the tool of choice for data scientists around the globe. Using JupyterLab we will run some reports on your own data. All reports are editable so you can quickly start experimenting and exploring more!
 
-This guide explains the installation and setup of JupyterLab and expects a fresh Ubuntu 18.10 installation. However, it should be easy to adapt it for most other platforms. In case you are using [a supervised installation of Home Assistant](https://www.home-assistant.io/getting-started/), please check out the [quick start to Home Assistant Data Science for supervised installations](https://data.home-assistant.io/docs/quick_start_index.html).
+This guide explains the installation and setup of JupyterLab and expects a fresh Ubuntu 18.10 installation. However, it should be easy to adapt it for most other platforms. In case you are using [Home Assistant](https://www.home-assistant.io/getting-started/), please check out the [quick start to Home Assistant Data Science](https://data.home-assistant.io/docs/quick_start_index.html).
 
 ## Preparing the system
 

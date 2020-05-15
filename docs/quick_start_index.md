@@ -1,12 +1,12 @@
 ---
 title: "Quick Start to Home Assistant Data Science"
 id: "quick-start"
-sidebar_label: "Getting Start (Supervised Installations)"
+sidebar_label: "Getting Started"
 ---
 
 In this quick start guide, we're going to show you how to set up and use [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/), a data science environment. JupyterLab is the tool of choice for data scientists around the globe. Using JupyterLab we will run some reports on your own data. All reports are editable so you can quickly start experimenting and exploring more!
 
-This guide is assuming that you have [a supervised installation of Home Assistant](https://www.home-assistant.io/getting-started/) up and running, this means you have a Supervisor button on the sidebar and can install Add-Ons. Home Assistant is out all-in-one platform and can easily be extended with other software, like JupyterLab. In case you are not using [a supervised installation of Home Assistant](https://www.home-assistant.io/getting-started/), please check out the [quick start to Home Assistant Data Science for Home Assistant Core users](quick-start-non-hassio).
+This guide is assuming that you are running have [Home Assistant](https://www.home-assistant.io/getting-started/) not [Home Assistant Core](https://www.home-assistant.io/docs/installation/) (see [here](https://www.home-assistant.io/faq/ha-vs-hassio/) for a summary of the differences). Home Assistant is out all-in-one platform and can easily be extended with other software, like JupyterLab. In case you are not using [a supervised installation of Home Assistant](https://www.home-assistant.io/getting-started/), please check out the [quick start to Home Assistant Data Science for Home Assistant Core users](quick-start-non-hassio).
 
 ## Installing JupyterLab
 
