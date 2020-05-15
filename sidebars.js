@@ -8,6 +8,6 @@
 module.exports = {
   docs: {
     Data: ['data', 'events', 'states', 'services', 'context', 'recorder'],
-    'Start Exploring': ['quick-start'],
+    'Start Exploring': ['quick-start', 'quick-start-core'],
   },
 };
