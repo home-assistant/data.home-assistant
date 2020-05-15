@@ -1,0 +1,4 @@
+# Processed by Netlify BEFORE netlify.toml file
+
+# Format is: From To
+/docs/quick-start-non-hassio /docs/quick-start-core
