@@ -29,7 +29,7 @@ const features = [
         <b><a href='/docs/quick-start'>Quick Start Guide.</a></b>
         {' '}In 15 minutes you will set up a data science environment and run your first reports.
         <br />
-        <b><a href='/docs/quick-start-non-hassio'>Quick Start Guide for non-hass.io users.</a></b>
+        <b><a href='/docs/quick-start-non-hassio'>Quick Start Guide for Home Assistant Core users.</a></b>
         {' '}In 15 minutes you will set up a data science environment and run your first reports.
       </>
     ),
