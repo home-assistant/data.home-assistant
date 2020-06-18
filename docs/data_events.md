@@ -20,7 +20,7 @@ States can be removed if configuration is reloaded or if an integration is remov
 | old_state | The previous state of the entity. Not available if state was created. |
 | new_state | The new state of the entity. Not available if the state was removed.  |
 
-The `old_state` and `new_state` are no longer stored in the `events` table to avoid duplicating data in the database. An example is in [Example Queries](#example-queries) shows how to join the `states` table to find the old and new state.
+The `old_state` and `new_state` are no longer stored in the `events` table to avoid duplicating data in the database. An example in [Example Queries](#example-queries) shows how to join the `states` table to find the old and new state.
 
 ### automation_triggered
 
