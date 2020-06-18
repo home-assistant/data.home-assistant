@@ -14,19 +14,21 @@ All states are stored in the database in a table named `states`.
 
 The difference between `last_changed` and `last_updated` is that `last_changed` only updates when the `state` value was changed while `last_updated` is updated on every state change. Example: if a light turns on, the state changes from `off` to `on`, so both `last_updated` and `last_changed` will update. If a light changes color from red to blue, only the state attributes change. In this case only `last_updated` will change. By distinguishing between these two values, we can easily identify how long a light has been on and how long it has been on the current color/brightness.
 
-| Field           | Type                                                                 |
-| --------------- | -------------------------------------------------------------------- |
-| state_id        | Column(Integer, primary_key=True)                                    |
-| domain          | Column(String(64))                                                   |
-| entity_id       | Column(String(255), index=True)                                      |
-| state           | Column(String(255))                                                  |
-| attributes      | Column(Text)                                                         |
-| event_id        | Column(Integer, ForeignKey('events.event_id'), index=True)           |
-| last_changed    | Column(DateTime(timezone=True), default=datetime.utcnow)             |
-| last_updated    | Column(DateTime(timezone=True), default=datetime.utcnow, index=True) |
-| created         | Column(DateTime(timezone=True), default=datetime.utcnow)             |
-| context_id      | Column(String(36), index=True)                                       |
-| context_user_id | Column(String(36), index=True)                                       |
+| Field             | Type                                                                 |
+| ----------------- | -------------------------------------------------------------------- |
+| state_id          | Column(Integer, primary_key=True)                                    |
+| domain            | Column(String(64))                                                   |
+| entity_id         | Column(String(255), index=True)                                      |
+| state             | Column(String(255))                                                  |
+| attributes        | Column(Text)                                                         |
+| event_id          | Column(Integer, ForeignKey('events.event_id'), index=True)           |
+| last_changed      | Column(DateTime(timezone=True), default=datetime.utcnow)             |
+| last_updated      | Column(DateTime(timezone=True), default=datetime.utcnow, index=True) |
+| created           | Column(DateTime(timezone=True), default=datetime.utcnow)             |
+| context_id        | Column(String(36), index=True)                                       |
+| context_user_id   | Column(String(36), index=True)                                       |
+| context_parent_id | Column(String(36), index=True)                                       |
+| old_state_id      | Column(Integer, primary_key=True)                                    |
 
 ### Indicices
 
@@ -42,4 +44,12 @@ Users are usually not so interested in state updates that only changed the attri
 
 ```sql
 SELECT * FROM states WHERE last_changed = last_updated
+```
+
+### Linking a new state to an old state
+
+After startup, once a state is changed, the id of the old state is stored as `old_state_id`, making it easy to find the previous state.
+
+```sql
+SELECT * FROM states LEFT JOIN states as old_states ON states.old_state_id = old_states.state_id
 ```
