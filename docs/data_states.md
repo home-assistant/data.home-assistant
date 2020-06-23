@@ -25,7 +25,7 @@ The difference between `last_changed` and `last_updated` is that `last_changed` 
 | last_changed      | Column(DateTime(timezone=True), default=datetime.utcnow)             |
 | last_updated      | Column(DateTime(timezone=True), default=datetime.utcnow, index=True) |
 | created           | Column(DateTime(timezone=True), default=datetime.utcnow)             |
-| old_state_id      | Column(Integer)                                                      |
+| old_state_id      | Column(Integer, index=True)                                                      |
 
 ### Indicices
 
