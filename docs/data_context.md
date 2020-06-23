@@ -30,3 +30,9 @@ Context is not stored in their own table in the database. Instead, each event ro
 ```sql
 SELECT states.entity_id, states.state, events.context_id, events.context_user_id, events.context_parent_id FROM states LEFT JOIN events ON states.event_id = events.event_id
 ```
+
+### Finding the `context_id` for an `event` in the database.
+
+```sql
+SELECT events.event_type, events.event_data, events.context_id, events.context_user_id, events.context_parent_id FROM events
+```
