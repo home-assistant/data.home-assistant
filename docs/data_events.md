@@ -62,7 +62,7 @@ All events are stored in the database in a table named `events`. The important f
 | Field             | Type                                                     |
 | ----------------- | -------------------------------------------------------- |
 | event_id          | Column(Integer, primary_key=True)                        |
-| event_type        | Column(String(32), index=True)                           |
+| event_type        | Column(String(32))                                       |
 | event_data        | Column(Text)                                             |
 | origin            | Column(String(32))                                       |
 | time_fired        | Column(DateTime(timezone=True), index=True)              |
@@ -72,6 +72,12 @@ All events are stored in the database in a table named `events`. The important f
 | context_parent_id | Column(String(36), index=True)                           |
 
 Further details about the [database schema](https://www.home-assistant.io/docs/backend/database/#schema) are available in the official documentation.
+
+### Indicices
+
+| Name                            | Fields                 |
+| ------------------------------- | ---------------------- |
+| ix_events_event_type_time_fired | event_type, time_fired |
 
 ## Example queries
 

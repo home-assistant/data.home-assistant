@@ -19,6 +19,20 @@ A context object contains the following fields:
 | ---------------- | ------------------------------------------------------------------------------------- |
 | context_id       | Unique identifier for the context.                                                    |
 | user_id          | Unique identifier of the user that started the change.                                |
-| refresh_token_id | Unique identifier of the refresh token the user used to authenticate (in development) |
+| parent_id        | Unique identifier of the parent context_id that started the change.                   |
 
-Context is not stored in their own table in the database. Instead, each row in each table maintains it's own columns to store context.
+Context is not stored in their own table in the database. Instead, each event row maintains it's own columns to store context.
+
+## Example queries
+
+### Finding the `context_id` for a `state` in the database.
+
+```sql
+SELECT states.entity_id, states.state, events.context_id, events.context_user_id, events.context_parent_id FROM states LEFT JOIN events ON states.event_id = events.event_id
+```
+
+### Finding the `context_id` for an `event` in the database.
+
+```sql
+SELECT events.event_type, events.event_data, events.context_id, events.context_user_id, events.context_parent_id FROM events
+```
