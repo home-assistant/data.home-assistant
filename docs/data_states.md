@@ -18,17 +18,14 @@ The difference between `last_changed` and `last_updated` is that `last_changed` 
 | ----------------- | -------------------------------------------------------------------- |
 | state_id          | Column(Integer, primary_key=True)                                    |
 | domain            | Column(String(64))                                                   |
-| entity_id         | Column(String(255), index=True)                                      |
+| entity_id         | Column(String(255))                                                  |
 | state             | Column(String(255))                                                  |
 | attributes        | Column(Text)                                                         |
 | event_id          | Column(Integer, ForeignKey('events.event_id'), index=True)           |
 | last_changed      | Column(DateTime(timezone=True), default=datetime.utcnow)             |
 | last_updated      | Column(DateTime(timezone=True), default=datetime.utcnow, index=True) |
 | created           | Column(DateTime(timezone=True), default=datetime.utcnow)             |
-| context_id        | Column(String(36), index=True)                                       |
-| context_user_id   | Column(String(36), index=True)                                       |
-| context_parent_id | Column(String(36), index=True)                                       |
-| old_state_id      | Column(Integer, primary_key=True)                                    |
+| old_state_id      | Column(Integer)                                                      |
 
 ### Indicices
 
