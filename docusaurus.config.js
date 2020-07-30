@@ -14,9 +14,9 @@ module.exports = {
         src: "img/logo-pretty.svg",
       },
       items: [
-        { to: "docs/data", label: "Docs", position: "left" },
-        { to: "docs/quick-start", label: "Quick Start", position: "left" },
-        { to: "blog", label: "Blog", position: "left" },
+        { to: "/docs/data", label: "Docs", position: "left" },
+        { to: "/docs/quick-start", label: "Quick Start", position: "left" },
+        { to: "/blog", label: "Blog", position: "left" },
       ],
     },
     footer: {
