@@ -5,7 +5,9 @@ authorURL: http://twitter.com/robmarkcole
 authorImageURL: https://github.com/robmarkcole.png?size=60
 ---
 
-_TL;DR: Today we launch a new data portal to get users up and running with their own data science environment running their first reports in 15 minutes. [Get started](/docs/quick-start)._
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+_TL;DR: Today we launch a new data portal to get users up and running with their own data science environment running their first reports in 15 minutes. <a href={useBaseUrl('docs/quick-start')}>Get started</a>.
 
 “Data is the new oil” is a popular expression on the internet, and whether or not you agree with that statement, it does summarise several points about data. Firstly, data, and in particular personal data, holds tremendous value. Large corporations realise this, and will go to extreme lengths to gain access to personal data since it contains insights into your behaviour. Insights generated from that data allows them to better target their marketing, giving them an edge over the competition. Secondly, data, like oil, requires processing before it is useful. Whilst oil is processed in refineries, data is processed by data scientists, who use various statistical techniques to separate signal from noise. The signals they generate are fed into models which aim to predict future behaviour based on historical data.
 
@@ -20,7 +22,7 @@ The Home Assistant Data Science website is your one-stop-shop for advice on gett
 
 We have also created a Python library called the [HASS-Data-Detective](https://github.com/robmarkcole/HASS-data-detective) which makes it super easy to get started investigating your Home Assistant data using modern data science tools such as [Pandas](https://pandas.pydata.org/).
 
-To tie it all together, we created a [Getting Started notebook](https://nbviewer.jupyter.org/github/home-assistant/home-assistant-notebooks/blob/master/GETTING_STARTED.ipynb) which shows you how to do some elementary analysis on your Home Assistant data. In 15 minutes, you can install the Jupyerlab Lite add-on and generate a report on your own data. [Try it out](/docs/quick-start).
+To tie it all together, we created a [Getting Started notebook](https://nbviewer.jupyter.org/github/home-assistant/home-assistant-notebooks/blob/master/GETTING_STARTED.ipynb) which shows you how to do some elementary analysis on your Home Assistant data. In 15 minutes, you can install the Jupyerlab Lite add-on and generate a report on your own data. <a href={useBaseUrl('docs/quick-start')}>Try it out</a>.
 
 Going forward, we are planning on publishing more articles here showing how you can do more advanced analysis on your Home Assistant data, show how this can feedback into your automations and highlight creations of the community.
 
