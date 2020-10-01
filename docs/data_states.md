@@ -6,7 +6,7 @@ sidebar_label: "States"
 
 An IoT device or data from a service is represented as one or more entities in Home Assistant. An entity in the core is represented as a state. Each state has an identifier for the entity in the format of `<domain>.<object_id>`, a state and attributes that further describe the state. An example of this would be `light.kitchen` with the state `on` and attributes describing the color and the brightness.
 
-The `<domain>` part of an entity identifier is equal to the Home Assistant component that is maintaining the state. This domain can be used to figure out what kind of state attributes to expect. See [the entity documentation](https://developers.home-assistant.io/docs/en/entity_index.html) for more information about the different entities and their data.
+The `<domain>` part of an entity identifier is equal to the Home Assistant component that is maintaining the state. This domain can be used to figure out what kind of state attributes to expect. See [the entity documentation](https://developers.home-assistant.io/docs/core/entity/) for more information about the different entities and their data.
 
 ## Database
 
