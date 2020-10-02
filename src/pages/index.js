@@ -82,22 +82,29 @@ function Home() {
       description="Explore the data of your home">
       <header className={classnames('hero hero--primary', styles.heroBanner)}>
         <div className="container">
-          <h1 className="hero__title">{siteConfig.title}</h1>
-          <p className="hero__subtitle">{siteConfig.tagline}</p>
-          <p>
-            <a className="hero__text" href="https://www.home-assistant.io">
-              Not a data scientist? Go to the normal website
-            </a>
-          </p>
-          <div className={styles.buttons}>
-            <Link
-              className={classnames(
-                'button button--outline button--secondary button--lg',
-                styles.getStarted,
-              )}
-              to={useBaseUrl('docs/quick-start')}>
-              Get Started
-            </Link>
+          <div className="row">
+            <div className={classnames('col col--5')}>
+              <img className={styles.heroLogo} alt="Home Assistant Logo" src="/img/logo-white.svg" />
+            </div>
+            <div className={classnames('col col--5')}>
+              <h1 className={styles.heroTitle}>{siteConfig.title}</h1>
+              <p className={styles.heroTagline}>{siteConfig.tagline}</p>
+              <p>
+                <a className={styles.heroText} href="https://www.home-assistant.io">
+                  Not a data scientist? Go to the normal website
+                </a>
+              </p>
+              <div className={styles.buttons}>
+                <Link
+                  className={classnames(
+                    'button button--outline button--secondary button--lg',
+                    styles.getStarted,
+                  )}
+                  to={useBaseUrl('docs/quick-start')}>
+                  Get Started
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </header>
