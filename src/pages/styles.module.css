@@ -33,3 +33,28 @@
   height: 200px;
   width: 200px;
 }
+
+a.heroText{
+  color: #ffffff;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  color: #ffffff;
+}
+
+.heroTagline {
+  font-size: 1.4rem;
+  color: #ffffff;
+}
+
+.heroLogo {
+  max-height: 16em;
+}
+
+.getStarted {
+  color: #ffffff !important;
+}
+.getStarted:hover {
+  color: #000000 !important;
+}
