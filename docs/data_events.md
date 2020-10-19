@@ -73,7 +73,7 @@ All events are stored in the database in a table named `events`. The important f
 
 Further details about the [database schema](https://www.home-assistant.io/docs/backend/database/#schema) are available in the official documentation.
 
-### Indicices
+### Indices
 
 | Name                            | Fields                 |
 | ------------------------------- | ---------------------- |
