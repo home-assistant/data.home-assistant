@@ -1,5 +1,5 @@
 import React from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -61,7 +61,7 @@ const features = [
 function Feature({imageUrl, title, description}) {
   const imgUrl = useBaseUrl(imageUrl);
   return (
-    <div className={classnames('col col--5', styles.feature)}>
+    <div className={clsx('col col--5', styles.feature)}>
       {imgUrl && (
         <div className="text--center">
           <img className={styles.featureImage} src={imgUrl} alt={title} />
@@ -80,13 +80,13 @@ function Home() {
     <Layout
       title={`Home Assistant Data Science`}
       description="Explore the data of your home">
-      <header className={classnames('hero hero--primary', styles.heroBanner)}>
+      <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">
           <div className="row">
-            <div className={classnames('col col--5')}>
+            <div className={clsx('col col--5')}>
               <img className={styles.heroLogo} alt="Home Assistant Logo" src="/img/logo-white.svg" />
             </div>
-            <div className={classnames('col col--5')}>
+            <div className={clsx('col col--5')}>
               <h1 className={styles.heroTitle}>{siteConfig.title}</h1>
               <p className={styles.heroTagline}>{siteConfig.tagline}</p>
               <p>
@@ -96,7 +96,7 @@ function Home() {
               </p>
               <div className={styles.buttons}>
                 <Link
-                  className={classnames(
+                  className={clsx(
                     'button button--outline button--secondary button--lg',
                     styles.getStarted,
                   )}
