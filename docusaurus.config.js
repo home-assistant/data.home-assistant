@@ -17,7 +17,7 @@ module.exports = {
       items: [
         { to: "/docs/data", label: "Docs", position: "left" },
         { to: "/docs/quick-start", label: "Quick Start", position: "left" },
-        { to: "/blog", label: "Blog", position: "left" },
+        // { to: "/blog", label: "Blog", position: "left" },
       ],
     },
     footer: {
@@ -31,10 +31,10 @@ module.exports = {
         {
           title: "Social",
           items: [
-            {
-              label: "Blog",
-              to: "blog",
-            },
+            // {
+            //   label: "Blog",
+            //   to: "blog",
+            // },
             {
               label: "GitHub",
               href: "https://github.com/home-assistant/data.home-assistant",
@@ -64,6 +64,7 @@ module.exports = {
           editUrl:
             "https://github.com/home-assistant/data.home-assistant/edit/master/",
         },
+        blog: false,
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
