@@ -8,7 +8,7 @@ In this quick start guide, we're going to show you how to set up and use [Jupyte
 
 ## Installing JupyterLab
 
-To install JupyterLab, we're going to use the JupyterLab Lite add-on by the Community Add-ons project. Install it by clicking this button:
+To install JupyterLab, we're going to use the JupyterLab add-on by the Community Add-ons project. Install it by clicking this button:
 
 [![Open your Home Assistant instance and show the dashboard of a Supervisor add-on.](https://my.home-assistant.io/badges/supervisor_addon.svg)](https://my.home-assistant.io/redirect/supervisor_addon/?addon=a0d7b954_jupyterlablite)
 
@@ -16,8 +16,8 @@ To install JupyterLab, we're going to use the JupyterLab Lite add-on by the Comm
 <summary>Step by step installation instructions</summary>
 
 - Click on Supervisor in the panel. Choose "Add-On Store" from the menu.
-- Add the Community Add-ons as a new repository with the URL `https://github.com/hassio-addons/repository` and click on "Add".
-- Scroll down to the new section for Community Add-ons and click the install button on **JupyterLab Lite**. Installation can take a couple of minutes depending on your internet speed.
+- If you haven't already, add the Community Add-ons as a new repository with the URL `https://github.com/hassio-addons/repository` and click on "Add".
+- Scroll down to the new section for Community Add-ons and click the install button on **JupyterLab**. Installation can take a couple of minutes depending on your internet speed.
 
 _In case your Home Assistant installation does not support add-ons, check out the [quick start for Home Assistant Core users](quick_start_core.md)._
 
@@ -25,11 +25,11 @@ _In case your Home Assistant installation does not support add-ons, check out th
 
 <br />
 
-Once installed, it will open the JupyterLab Lite add-on page:
+Once installed, it will open the JupyterLab add-on page:
 
-1. Click on "START" to start the JupyterLab Lite add-on.
+1. Click on "START" to start the JupyterLab add-on.
 1. Now click on "OPEN WEB UI" to open JupyterLab. If you get a blank page with "502 Gateway not ready", wait a minute and hit refresh in your browser. JupyterLab can take some time to start up.
-1. You will be prompted for your credentials. You can use the same username and password as that you use to log in to Home Assistant.
+1. You might be prompted for your credentials. You can use the same username and password as that you use to log in to Home Assistant.
 
 <img
   src='/img/getting-started/hassio-jupyterlab.png'
