@@ -7,7 +7,7 @@
 
 module.exports = {
   docs: {
-    Data: ['data', 'events', 'states', 'services', 'context', 'recorder'],
+    Data: ['data', 'events', 'states', 'statistics', 'services', 'context', 'recorder'],
     'Start Exploring': ['quick-start', 'quick-start-core'],
   },
 };
