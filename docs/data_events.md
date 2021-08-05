@@ -57,7 +57,7 @@ Note, a user doesn't always wait for Home Assistant to gracefully shut down and 
 
 ## Database table
 
-All events are stored in the database in a table named `events`. The important fields for the events table are `event_type`, `time_fired` and `context_id`. That information can be used to figure out what happened when, and how it related to other evenets.
+All events are stored in the database in a table named `events`. The important fields for the events table are `event_type`, `time_fired` and `context_id`. That information can be used to figure out what happened when, and how it related to other events.
 
 | Field             | Type                                                     |
 | ----------------- | -------------------------------------------------------- |
