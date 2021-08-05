@@ -83,7 +83,7 @@ Further details about the [database schema](https://www.home-assistant.io/docs/b
 
 ### Finding the state for `state_changed` events
 
-The new state and old state can for a `state_changed` event can be found by joining the `states` table.
+The new state and old state for a `state_changed` event can be found by joining the `states` table.
 
 ```sql
 SELECT * FROM events LEFT JOIN states as new_states ON events.event_id = new_states.event_id LEFT JOIN states as old_states ON new_states.old_state_id = old_states.state_id where events.event_type = 'state_changed'
