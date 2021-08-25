@@ -37,8 +37,14 @@ This restriction might be dropped in the future to allow integrations to import 
 
 This table contains the actual data. Depending on the entity type, different data is tracked.
 
-- Sensor entities with a measurement: `mean`, `min`, `max`
-- Sensor entities that are metered: `last_reset`, `state`, `sum`
+- Sensor entities with a measurement (the sensor's state_class is `measurement`):
+  - `mean` - hourly time-weighted average
+  - `min` - hourly minimum
+  - `max` - hourly maximum
+- Sensor entities that have a strictly increasing value, such as utility meters (the sensor's state_class is `total_increasing`):
+  - `last_reset` - the time when the last meter cycle was started, if known
+  - `state` - the sensor's state at the end of the hour
+  - `sum` - hourly grand total since statistics for the sensor was first compiled, offset by the sensor's first valid state when compiling statistics. Please refer to the [developer documentation](https://developers.home-assistant.io/docs/core/entity/sensor#state_class_total_increasing) for how the `sum` is calculated.
 
 | Field             | Type                                                     |
 | ----------------- | -------------------------------------------------------- |
@@ -46,9 +52,10 @@ This table contains the actual data. Depending on the entity type, different dat
 | created | Column(DATETIME_TYPE, default=dt_util.utcnow)
 | metadata_id | Column(Integer, ForeignKey(f"{TABLE_STATISTICS_META}.id", ondelete="CASCADE"), index=True)
 | start | Column(DATETIME_TYPE, index=True)
-| mean | Column(Float())
-| min | Column(Float())
-| max | Column(Float())
+| mean | Column(DOUBLE_TYPE())
+| min | Column(DOUBLE_TYPE())
+| max | Column(DOUBLE_TYPE())
 | last_reset | Column(DATETIME_TYPE)
-| state | Column(Float())
-| sum | Column(Float())
+| state | Column(DOUBLE_TYPE())
+| sum | Column(DOUBLE_TYPE())
+
