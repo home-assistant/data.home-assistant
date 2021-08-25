@@ -59,3 +59,12 @@ This table contains the actual data. Depending on the entity type, different dat
 | state | Column(DOUBLE_TYPE())
 | sum | Column(DOUBLE_TYPE())
 
+### Statistics Runs
+
+This table is used to keep track of for which hours statistics has been compiled.
+
+
+| Field             | Type                                                     |
+| ----------------- | -------------------------------------------------------- |
+| run_id | Column(Integer, primary_key=True)
+| start | Column(DateTime(timezone=True))
