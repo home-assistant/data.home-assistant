@@ -61,7 +61,7 @@ This table contains the actual data. Depending on the entity type, different dat
 
 ### Statistics Runs
 
-This table is used to keep track of for which hours statistics has been compiled.
+This table is used to keep track of hours for which statistics have been compiled.
 
 
 | Field             | Type                                                     |
