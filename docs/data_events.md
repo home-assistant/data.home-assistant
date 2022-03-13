@@ -66,12 +66,13 @@ All events are stored in the database in a table named `events`. The important f
 | event_data        | Column(Text)                                             |
 | origin            | Column(String(32))                                       |
 | time_fired        | Column(DateTime(timezone=True), index=True)              |
-| created           | Column(DateTime(timezone=True), default=datetime.utcnow) |
 | context_id        | Column(String(36), index=True)                           |
 | context_user_id   | Column(String(36), index=True)                           |
 | context_parent_id | Column(String(36), index=True)                           |
 
 Further details about the [database schema](https://www.home-assistant.io/docs/backend/database/#schema) are available in the official documentation.
+
+The `created` is no longer stored in the `events` table to avoid duplicating data in the database as it was always the same as `timed_fired`.
 
 ### Indices
 
