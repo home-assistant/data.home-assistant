@@ -72,7 +72,7 @@ All events are stored in the database in a table named `events`. The important f
 
 Further details about the [database schema](https://www.home-assistant.io/docs/backend/database/#schema) are available in the official documentation.
 
-The `created` field is no longer stored in the `events` table to avoid duplicating data in the database as it was always the same as `timed_fired`.
+The `created` field is no longer stored in the `events` table to avoid duplicating data in the database as it was always the same as `time_fired`.
 
 ### Indices
 
