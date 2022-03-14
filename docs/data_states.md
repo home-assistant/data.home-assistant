@@ -24,8 +24,9 @@ The difference between `last_changed` and `last_updated` is that `last_changed` 
 | event_id          | Column(Integer, ForeignKey('events.event_id'), index=True)           |
 | last_changed      | Column(DateTime(timezone=True), default=datetime.utcnow)             |
 | last_updated      | Column(DateTime(timezone=True), default=datetime.utcnow, index=True) |
-| created           | Column(DateTime(timezone=True), default=datetime.utcnow)             |
-| old_state_id      | Column(Integer, index=True)                                                      |
+| old_state_id      | Column(Integer, index=True)                                          |
+
+The `created` field is no longer stored in the `states` table to avoid duplicating data in the database as it was always the same as `last_updated` and the matching `state_change` event's `time_fired`.
 
 ### Indices
 
