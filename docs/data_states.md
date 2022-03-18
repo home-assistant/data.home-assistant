@@ -12,7 +12,7 @@ The `<domain>` part of an entity identifier is equal to the Home Assistant compo
 
 All states are stored in the database in a table named `states`.
 
-The difference between `last_changed` and `last_updated` is that `last_changed` only updates when the `state` value was changed while `last_updated` is updated on every state change. Example: if a light turns on, the state changes from `off` to `on`, so both `last_updated` and `last_changed` will update. If a light changes color from red to blue, only the state attributes change. In this case only `last_updated` will change. By distinguishing between these two values, we can easily identify how long a light has been on and how long it has been on the current color/brightness.
+The difference between `last_changed` and `last_updated` is that `last_changed` only updates when the `state` value was changed while `last_updated` is updated on any change to the state, even if that included just attributes. Example: if a light turns on, the state changes from `off` to `on`, so both `last_updated` and `last_changed` will update. If a light changes color from red to blue, only the state attributes change. In this case only `last_updated` will change. By distinguishing between these two values, we can easily identify how long a light has been on and how long it has been on the current color/brightness.
 
 | Field             | Type                                                                      |
 | ----------------- | ------------------------------------------------------------------------- |
