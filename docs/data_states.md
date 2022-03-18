@@ -28,7 +28,7 @@ The difference between `last_changed` and `last_updated` is that `last_changed` 
 
 The `created` field is no longer stored in the `states` table to avoid duplicating data in the database as it was always the same as `last_updated` and the matching `state_change` event's `time_fired`.
 
-As many `attributes` are the same, attributes are now stored in the `state_attributes` table with many to one relationship:
+As many `attributes` are the same, attributes are stored in the `state_attributes` table with many to one relationship:
 
 | Field             | Type                                                                 |
 | ----------------- | -------------------------------------------------------------------- |
