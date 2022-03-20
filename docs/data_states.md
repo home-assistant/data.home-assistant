@@ -17,7 +17,6 @@ The difference between `last_changed` and `last_updated` is that `last_changed` 
 | Field             | Type                                                                      |
 | ----------------- | ------------------------------------------------------------------------- |
 | state_id          | Column(Integer, primary_key=True)                                         |
-| domain            | Column(String(64))                                                        |
 | entity_id         | Column(String(255))                                                       |
 | state             | Column(String(255))                                                       |
 | event_id          | Column(Integer, ForeignKey('events.event_id'), index=True)                |
