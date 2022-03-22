@@ -1,4 +1,4 @@
----
+data.home-assistant/docs/data_index.mddata.home-assistant/docs/data_index.md--
 title: "Data"
 id: "data"
 sidebar_label: "Introduction"
