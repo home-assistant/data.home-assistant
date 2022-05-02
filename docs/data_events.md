@@ -64,11 +64,11 @@ All events are stored in the database in a table named `events`. The important f
 | event_id          | Column(Integer, primary_key=True)                             |
 | event_type        | Column(String(32))                                            |
 | event_data        | Column(Text)                                                  |
-| origin            | Column(String(32))                                            |
+| origin_idx        | Column(Integer)                                               |
 | time_fired        | Column(DateTime(timezone=True), index=True)                   |
 | context_id        | Column(String(36), index=True)                                |
-| context_user_id   | Column(String(36), index=True)                                |
-| context_parent_id | Column(String(36), index=True)                                |
+| context_user_id   | Column(String(36))                                            |
+| context_parent_id | Column(String(36))                                            |
 | data_id           | Column(Integer, ForeignKey("event_data.data_id"), index=True) |
 
 Further details about the [database schema](https://www.home-assistant.io/docs/backend/database/#schema) are available in the official documentation.
@@ -93,14 +93,13 @@ Below is an example query to find `event_data` that were recordered after the ch
 
 ## Example queries
 
-### Finding the state for `state_changed` events
+### Finding all events
 
-The new state and old state for a `state_changed` event can be found by joining the `states` table.
+All events except `state_changed` are stored in the `events` table. The `states.last_updated` and `events.timed_fired` are always the same time. A union query can be used to find all the events including `state_changed`:
 
 ```sql
-SELECT * FROM events LEFT JOIN states as new_states ON events.event_id = new_states.event_id LEFT JOIN states as old_states ON new_states.old_state_id = old_states.state_id where events.event_type = 'state_changed'
+SELECT event_type, time_fired, event_data.shared_data as data, NULL as attributes, context_id FROM events LEFT JOIN event_data ON (events.data_id=event_data.data_id) UNION ALL select 'state_changed' as event_type, last_updated as time_fired, NULL as data, state_attributes.shared_attrs as attributes, context_id from states LEFT JOIN state_attributes ON states.attributes_id = state_attributes.attributes_id;
 ```
-
 ### Finding the event_data for events
 
 For events that were recorded after the `event_data` table was created, the data is in the `event_data` table. While there are still older rows in the database, check the `shared_data` field first and fallback to the `event_data` field.
