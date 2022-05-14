@@ -22,7 +22,7 @@ The `last_changed` field is not stored in the database when it is the same as th
 | entity_id         | Column(String(255))                                                       |
 | state             | Column(String(255))                                                       |
 | event_id          | Column(Integer, ForeignKey('events.event_id'), index=True)                |
-| last_changed      | Column(DateTime(timezone=True))                  |
+| last_changed      | Column(DateTime(timezone=True))                                           |
 | last_updated      | Column(DateTime(timezone=True), default=datetime.utcnow, index=True)      |
 | old_state_id      | Column(Integer, ForeignKey("states.state_id"), index=True)                |
 | attributes_id     | Column(Integer, ForeignKey("state_attributes.attributes_id"), index=True) |
