@@ -14,6 +14,8 @@ All states are stored in the database in a table named `states`.
 
 The difference between `last_changed` and `last_updated` is that `last_changed` only updates when the `state` value was changed while `last_updated` is updated on any change to the state, even if that included just attributes. Example: if a light turns on, the state changes from `off` to `on`, so both `last_updated` and `last_changed` will update. If a light changes color from red to blue, only the state attributes change. In this case only `last_updated` will change. By distinguishing between these two values, we can easily identify how long a light has been on and how long it has been on the current color/brightness.
 
+The `last_changed` field is not stored in the database when it is the same as the `last_updated` field. See [Fetching the last_changed when it is NULL](#Fetching_the_last_changed_when_it_is_NULL) for queries to populate the value when it is NULL.
+
 | Field             | Type                                                                      |
 | ----------------- | ------------------------------------------------------------------------- |
 | state_id          | Column(Integer, primary_key=True)                                         |
@@ -30,8 +32,6 @@ The difference between `last_changed` and `last_updated` is that `last_changed` 
 | origin_idx        | Column(Integer)                                                           |
 
 The `created` field is no longer stored in the `states` table to avoid duplicating data in the database as it was always the same as `last_updated` and the matching `state_change` event's `time_fired`.
-
-The `last_changed` field is not stored in the database when its the same as the `last_updated` field. See [Fetching the last_changed when it is NULL](#Fetching_the_last_changed_when_it_is_NULL) for queries to populate the value when it is NULL.
 
 As many `attributes` are the same, attributes are stored in the `state_attributes` table with many to one relationship:
 
