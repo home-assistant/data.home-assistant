@@ -20,7 +20,7 @@ The difference between `last_changed` and `last_updated` is that `last_changed` 
 | entity_id         | Column(String(255))                                                       |
 | state             | Column(String(255))                                                       |
 | event_id          | Column(Integer, ForeignKey('events.event_id'), index=True)                |
-| last_changed      | Column(DateTime(timezone=True), default=datetime.utcnow)                  |
+| last_changed      | Column(DateTime(timezone=True))                  |
 | last_updated      | Column(DateTime(timezone=True), default=datetime.utcnow, index=True)      |
 | old_state_id      | Column(Integer, ForeignKey("states.state_id"), index=True)                |
 | attributes_id     | Column(Integer, ForeignKey("state_attributes.attributes_id"), index=True) |
@@ -30,6 +30,8 @@ The difference between `last_changed` and `last_updated` is that `last_changed` 
 | origin_idx        | Column(Integer)                                                           |
 
 The `created` field is no longer stored in the `states` table to avoid duplicating data in the database as it was always the same as `last_updated` and the matching `state_change` event's `time_fired`.
+
+The `last_changed` field is not stored in the database when its the same as the `last_updated` field. See [Fetching the last_changed when it is NULL](#Fetching_the_last_changed_when_it_is_NULL) for queries to populate the value when it is NULL.
 
 As many `attributes` are the same, attributes are stored in the `state_attributes` table with many to one relationship:
 
@@ -75,3 +77,23 @@ SELECT * FROM states LEFT JOIN state_attributes ON states.attributes_id = state_
 
 Attributes can be found in the following order `state_attributes.shared_attrs` or `states.attributes`.
 As new states are recorded `states.attributes` will be phased out.
+
+### Fetching the last_changed when it is NULL
+
+#### SQLite
+
+```sql
+select entity_id,state,last_updated,iif(last_changed is NULL,last_updated,last_changed) as last_changed from states;
+```
+
+#### MySQL & MariaDB
+
+```sql
+select entity_id,state,last_updated,if(last_changed is NULL,last_updated,last_changed) as last_changed from states;
+```
+
+### PostgreSQL
+
+```sql
+select entity_id,state,last_updated,(case when last_changed is NULL then last_updated else last_changed end) from states;
+```
