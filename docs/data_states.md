@@ -14,13 +14,15 @@ All states are stored in the database in a table named `states`.
 
 The difference between `last_changed` and `last_updated` is that `last_changed` only updates when the `state` value was changed while `last_updated` is updated on any change to the state, even if that included just attributes. Example: if a light turns on, the state changes from `off` to `on`, so both `last_updated` and `last_changed` will update. If a light changes color from red to blue, only the state attributes change. In this case only `last_updated` will change. By distinguishing between these two values, we can easily identify how long a light has been on and how long it has been on the current color/brightness.
 
+The `last_changed` field is not stored in the database when it is the same as the `last_updated` field. See [Fetching the last_changed when it is NULL](#fetching-the-last_changed-when-it-is-null) for queries to populate the value when it is NULL.
+
 | Field             | Type                                                                      |
 | ----------------- | ------------------------------------------------------------------------- |
 | state_id          | Column(Integer, primary_key=True)                                         |
 | entity_id         | Column(String(255))                                                       |
 | state             | Column(String(255))                                                       |
 | event_id          | Column(Integer, ForeignKey('events.event_id'), index=True)                |
-| last_changed      | Column(DateTime(timezone=True), default=datetime.utcnow)                  |
+| last_changed      | Column(DateTime(timezone=True))                                           |
 | last_updated      | Column(DateTime(timezone=True), default=datetime.utcnow, index=True)      |
 | old_state_id      | Column(Integer, ForeignKey("states.state_id"), index=True)                |
 | attributes_id     | Column(Integer, ForeignKey("state_attributes.attributes_id"), index=True) |
@@ -75,3 +77,23 @@ SELECT * FROM states LEFT JOIN state_attributes ON states.attributes_id = state_
 
 Attributes can be found in the following order `state_attributes.shared_attrs` or `states.attributes`.
 As new states are recorded `states.attributes` will be phased out.
+
+### Fetching the last_changed when it is NULL
+
+#### SQLite
+
+```sql
+select entity_id,state,last_updated,iif(last_changed is NULL,last_updated,last_changed) as last_changed from states;
+```
+
+#### MySQL & MariaDB
+
+```sql
+select entity_id,state,last_updated,if(last_changed is NULL,last_updated,last_changed) as last_changed from states;
+```
+
+### PostgreSQL
+
+```sql
+select entity_id,state,last_updated,(case when last_changed is NULL then last_updated else last_changed end) from states;
+```
