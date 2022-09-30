@@ -19,7 +19,7 @@ Long-term statistics consist of two tables. One contains the metadata, the other
 
 ### Statistics Meta
 
-This table contains the metadata describing the source. Statistics is either derived from entities, in which case `statistic_id` is equivalent to the `entity_id`, or imported from an external source. Statistics imported from an external source is similar to `entity_id`, but uses a `:` instead of a `.` as a delimiter between the domain and object ID.
+This table contains the metadata describing the source. Statistics are either derived from entities, in which case `statistic_id` is equivalent to the `entity_id`, or imported from an external source. Statistics imported from an external source are similar to `entity_id`, but use a `:` instead of a `.` as a delimiter between the domain and object ID.
 
 If an entity ID of an entity is changed, the statistic ID is automatically updated.
 
