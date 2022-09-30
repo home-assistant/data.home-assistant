@@ -19,19 +19,20 @@ Long-term statistics consist of two tables. One contains the metadata, the other
 
 ### Statistics Meta
 
-This table contains the metadata describing the source. Statistics are currently limited to be derived from entities, and so `statistic_id` is currently equivalent to `entity_id`. When an entity ID is changed, the statistic ID is automatically updated.
+This table contains the metadata describing the source. Statistics are either derived from entities, in which case `statistic_id` is equivalent to the `entity_id`, or imported from an external source. Statistics imported from an external source are similar to `entity_id`, but use a `:` instead of a `.` as a delimiter between the domain and object ID.
 
-This restriction might be dropped in the future to allow integrations to import statistics without an entity.
+If an entity ID of an entity is changed, the statistic ID is automatically updated.
 
 | Field             | Type                                                     |
 | ----------------- | -------------------------------------------------------- |
 | id | Column(Integer, primary_key=True)
 | statistic_id | Column(String(255), index=True)
 | source | Column(String(32))
+| state_unit_of_measurement | Column(String(255))
 | unit_of_measurement | Column(String(255))
 | has_mean | Column(Boolean)
 | has_sum | Column(Boolean)
-
+| name | Column(String(255))
 
 ### Statistics
 
@@ -41,7 +42,7 @@ This table contains the actual data. Depending on the entity type, different dat
   - `mean` - hourly time-weighted average
   - `min` - hourly minimum
   - `max` - hourly maximum
-- Sensor entities that have a strictly increasing value, such as utility meters (the sensor's state_class is `total_increasing`):
+- Sensor entities that have a value which is integrated over time, such as utility meters (the sensor's state_class is `total` or `total_increasing`):
   - `last_reset` - the time when the last meter cycle was started, if known
   - `state` - the sensor's state at the end of the hour
   - `sum` - hourly grand total since statistics for the sensor was first compiled, offset by the sensor's first valid state when compiling statistics. Please refer to the [developer documentation](https://developers.home-assistant.io/docs/core/entity/sensor#state_class_total_increasing) for how the `sum` is calculated.
