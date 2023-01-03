@@ -57,7 +57,7 @@ Note, a user doesn't always wait for Home Assistant to gracefully shut down and 
 
 ## Database table
 
-All events are stored in the database in a table named `events`. The important fields for the events table are `event_type`, `time_fired` and `context_id`. That information can be used to figure out what happened when, and how it related to other events.
+All events are stored in the database in a table named `events`. The important fields for the events table are `event_type`, `time_fired_ts` and `context_id`. That information can be used to figure out what happened when, and how it related to other events.
 
 | Field             | Type                                                          |
 | ----------------- | ------------------------------------------------------------- |
@@ -65,7 +65,7 @@ All events are stored in the database in a table named `events`. The important f
 | event_type        | Column(String(32))                                            |
 | event_data        | Column(Text)                                                  |
 | origin_idx        | Column(Integer)                                               |
-| time_fired        | Column(DateTime(timezone=True), index=True)                   |
+| time_fired_ts     | Column(Float, index=True)                                     |
 | context_id        | Column(String(36), index=True)                                |
 | context_user_id   | Column(String(36))                                            |
 | context_parent_id | Column(String(36))                                            |
@@ -73,7 +73,7 @@ All events are stored in the database in a table named `events`. The important f
 
 Further details about the [database schema](https://www.home-assistant.io/docs/backend/database/#schema) are available in the official documentation.
 
-The `created` field is no longer stored in the `events` table to avoid duplicating data in the database as it was always the same as `time_fired`.
+The `created` field is no longer stored in the `events` table to avoid duplicating data in the database as it was always the same as `time_fired_ts`.
 
 As many `event_data` fields are the same, event_data is stored in the `event_data` table with many to one relationship:
 
@@ -87,19 +87,20 @@ Below is an example query to find `event_data` that were recordered after the ch
 
 ### Indices
 
-| Name                            | Fields                 |
-| ------------------------------- | ---------------------- |
-| ix_events_event_type_time_fired | event_type, time_fired |
+| Name                               | Fields                    |
+| ---------------------------------- | ------------------------- |
+| ix_events_event_type_time_fired_ts | event_type, time_fired_ts |
 
 ## Example queries
 
 ### Finding all events
 
-All events except `state_changed` are stored in the `events` table. The `states.last_updated` and `events.timed_fired` are always the same time. A union query can be used to find all the events including `state_changed`:
+All events except `state_changed` are stored in the `events` table. The `states.last_updated_ts` and `events.timed_fired_ts` are always the same time. A union query can be used to find all the events including `state_changed`:
 
 ```sql
-SELECT event_type, time_fired, event_data.shared_data as data, NULL as attributes, context_id FROM events LEFT JOIN event_data ON (events.data_id=event_data.data_id) UNION ALL select 'state_changed' as event_type, last_updated as time_fired, NULL as data, state_attributes.shared_attrs as attributes, context_id from states LEFT JOIN state_attributes ON states.attributes_id = state_attributes.attributes_id;
+SELECT event_type, time_fired_ts, event_data.shared_data as data, NULL as attributes, context_id FROM events LEFT JOIN event_data ON (events.data_id=event_data.data_id) UNION ALL select 'state_changed' as event_type, last_updated_ts as time_fired_ts, NULL as data, state_attributes.shared_attrs as attributes, context_id from states LEFT JOIN state_attributes ON states.attributes_id = state_attributes.attributes_id;
 ```
+
 ### Finding the event_data for events
 
 For events that were recorded after the `event_data` table was created, the data is in the `event_data` table. While there are still older rows in the database, check the `shared_data` field first and fallback to the `event_data` field.
