@@ -43,16 +43,16 @@ This table contains the actual data. Depending on the entity type, different dat
   - `min` - hourly minimum
   - `max` - hourly maximum
 - Sensor entities that have a value which is integrated over time, such as utility meters (the sensor's state_class is `total` or `total_increasing`):
-  - `last_reset` - the time when the last meter cycle was started, if known
+  - `last_reset_ts` - the timestamp when the last meter cycle was started, if known
   - `state` - the sensor's state at the end of the hour
   - `sum` - hourly grand total since statistics for the sensor was first compiled, offset by the sensor's first valid state when compiling statistics. Please refer to the [developer documentation](https://developers.home-assistant.io/docs/core/entity/sensor#state_class_total_increasing) for how the `sum` is calculated.
 
 | Field             | Type                                                     |
 | ----------------- | -------------------------------------------------------- |
 | id | Column(Integer, primary_key=True)
-| created | Column(DATETIME_TYPE, default=dt_util.utcnow)
+| created_ts | Column(DOUBLE_TYPE(), default=time.time)
 | metadata_id | Column(Integer, ForeignKey(f"{TABLE_STATISTICS_META}.id", ondelete="CASCADE"), index=True)
-| start | Column(DATETIME_TYPE, index=True)
+| start_ts | Column(DOUBLE_TYPE(), index=True)
 | mean | Column(DOUBLE_TYPE())
 | min | Column(DOUBLE_TYPE())
 | max | Column(DOUBLE_TYPE())
