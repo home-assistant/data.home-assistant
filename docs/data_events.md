@@ -59,17 +59,17 @@ Note, a user doesn't always wait for Home Assistant to gracefully shut down and 
 
 All events are stored in the database in a table named `events`. The important fields for the events table are `event_type`, `time_fired_ts` and `context_id`. That information can be used to figure out what happened when, and how it related to other events.
 
-| Field             | Type                                                          |
-| ----------------- | ------------------------------------------------------------- |
-| event_id          | Column(Integer, primary_key=True)                             |
-| event_type        | Column(String(32))                                            |
-| event_data        | Column(Text)                                                  |
-| origin_idx        | Column(Integer)                                               |
-| time_fired_ts     | Column(Float, index=True)                                     |
-| context_id        | Column(String(36), index=True)                                |
-| context_user_id   | Column(String(36))                                            |
-| context_parent_id | Column(String(36))                                            |
-| data_id           | Column(Integer, ForeignKey("event_data.data_id"), index=True) |
+| Field                 | Type                                                          |
+| --------------------- | ------------------------------------------------------------- |
+| event_id              | Column(Integer, primary_key=True)                             |
+| event_type            | Column(String(32))                                            |
+| event_data            | Column(Text)                                                  |
+| origin_idx            | Column(Integer)                                               |
+| time_fired_ts         | Column(Float, index=True)                                     |
+| context_id_bin        | Column(Blob(16), index=True)                                  |
+| context_user_id_bin   | Column(Blob(16))                                              |
+| context_parent_id_bin | Column(Blob(16))                                              |
+| data_id               | Column(Integer, ForeignKey("event_data.data_id"), index=True) |
 
 Further details about the [database schema](https://www.home-assistant.io/docs/backend/database/#schema) are available in the official documentation.
 
@@ -107,4 +107,12 @@ For events that were recorded after the `event_data` table was created, the data
 
 ```sql
 SELECT * FROM events LEFT JOIN event_data ON (events.data_id=event_data.data_id);
+```
+
+### Viewing the context data
+
+#### SQLite context data example
+
+```sql
+select event_id, event_type, datetime(time_fired_ts, 'unixepoch', 'localtime'), hex(context_id_bin), hex(context_parent_id_bin) from events;
 ```
