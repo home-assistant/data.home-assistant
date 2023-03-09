@@ -16,20 +16,20 @@ The difference between `last_changed_ts` and `last_updated_ts` is that `last_cha
 
 The `last_changed_ts` field is not stored in the database when it is the same as the `last_updated_ts` field. See [Fetching the last_changed_ts when it is NULL](#fetching-the-last_changed_ts-when-it-is-null) for queries to populate the value when it is NULL.
 
-| Field             | Type                                                                      |
-| ----------------- | ------------------------------------------------------------------------- |
-| state_id          | Column(Integer, primary_key=True)                                         |
-| entity_id         | Column(String(255))                                                       |
-| state             | Column(String(255))                                                       |
-| event_id          | Column(Integer, ForeignKey('events.event_id'), index=True)                |
-| last_changed_ts   | Column(Float)                                                             |
-| last_updated_ts   | Column(Float, default=time.time, index=True)                              |
-| old_state_id      | Column(Integer, ForeignKey("states.state_id"), index=True)                |
-| attributes_id     | Column(Integer, ForeignKey("state_attributes.attributes_id"), index=True) |
-| context_id        | Column(String(36), index=True)                                            |
-| context_user_id   | Column(String(36))                                                        |
-| context_parent_id | Column(String(36))                                                        |
-| origin_idx        | Column(Integer)                                                           |
+| Field                 | Type                                                                      |
+| --------------------- | ------------------------------------------------------------------------- |
+| state_id              | Column(Integer, primary_key=True)                                         |
+| entity_id             | Column(String(255))                                                       |
+| state                 | Column(String(255))                                                       |
+| event_id              | Column(Integer, ForeignKey('events.event_id'), index=True)                |
+| last_changed_ts       | Column(Float)                                                             |
+| last_updated_ts       | Column(Float, default=time.time, index=True)                              |
+| old_state_id          | Column(Integer, ForeignKey("states.state_id"), index=True)                |
+| attributes_id         | Column(Integer, ForeignKey("state_attributes.attributes_id"), index=True) |
+| context_id_bin        | Column(Blob(16), index=True)                                              |
+| context_user_id_bin   | Column(Blob(16))                                                          |
+| context_parent_id_bin | Column(Blob(16))                                                          |
+| origin_idx            | Column(Integer)                                                           |
 
 The `created` field is no longer stored in the `states` table to avoid duplicating data in the database as it was always the same as `last_updated_ts` and the matching `state_change` event's `time_fired_ts`.
 
