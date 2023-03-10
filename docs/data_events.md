@@ -62,6 +62,7 @@ All events are stored in the database in a table named `events`. The important f
 | Field                 | Type                                                          |
 | --------------------- | ------------------------------------------------------------- |
 | event_id              | Column(Integer, primary_key=True)                             |
+| event_type_id         | Column(Integer, index=True)                                   |
 | event_data            | Column(Text)                                                  |
 | origin_idx            | Column(Integer)                                               |
 | time_fired_ts         | Column(Float, index=True)                                     |
