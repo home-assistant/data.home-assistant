@@ -59,23 +59,23 @@ Note, a user doesn't always wait for Home Assistant to gracefully shut down and 
 
 All events are stored in the database in a table named `events`. The important fields for the events table are `event_type_id`, `time_fired_ts`, `data_id`, and `context_id_bin`. That information can be used to figure out what happened when, and how it related to other events.
 
-| Field                 | Type                                                          |
-| --------------------- | ------------------------------------------------------------- |
-| event_id              | Column(Integer, primary_key=True)                             |
-| event_type_id         | Column(Integer, index=True)                                   |
-| event_data            | Column(Text)                                                  |
-| origin_idx            | Column(Integer)                                               |
-| time_fired_ts         | Column(Float, index=True)                                     |
-| context_id_bin        | Column(Blob(16), index=True)                                  |
-| context_user_id_bin   | Column(Blob(16))                                              |
-| context_parent_id_bin | Column(Blob(16))                                              |
-| data_id               | Column(Integer, ForeignKey("event_data.data_id"), index=True) |
+| Field                 | Type                                                                 |
+| --------------------- | -------------------------------------------------------------------- |
+| event_id              | Column(Integer, primary_key=True)                                    |
+| event_type_id         | Column(Integer, ForeignKey("event_types.event_type_id"), index=True) |
+| event_data            | Column(Text)                                                         |
+| origin_idx            | Column(Integer)                                                      |
+| time_fired_ts         | Column(Float, index=True)                                            |
+| context_id_bin        | Column(Blob(16), index=True)                                         |
+| context_user_id_bin   | Column(Blob(16))                                                     |
+| context_parent_id_bin | Column(Blob(16))                                                     |
+| data_id               | Column(Integer, ForeignKey("event_data.data_id"), index=True)        |
 
 Further details about the [database schema](https://www.home-assistant.io/docs/backend/database/#schema) are available in the official documentation.
 
 The `created` field is no longer stored in the `events` table to avoid duplicating data in the database as it was always the same as `time_fired_ts`.
 
-As many `event_data` fields are the same, event_data is stored in the `event_data` table with a many to one relationship:
+As many `event_data` fields are the same, event_data is stored in the `event_data` table with a many to one relationship on `data_id`:
 
 | Field             | Type                                                                 |
 | ----------------- | -------------------------------------------------------------------- |
@@ -85,7 +85,7 @@ As many `event_data` fields are the same, event_data is stored in the `event_dat
 
 The [Example queries](#example-queries) show how to find `event_data` that were recorded after the change over to using the `event_data` table.
 
-As many `event_type` fields are the same, event_type is stored in the `event_type` table with a many to one relationship:
+As many `event_type` fields are the same, `event_type` is stored in the `event_types` table with a many to one relationship on `event_type_id`:
 
 | Field             | Type                                                                 |
 | ----------------- | -------------------------------------------------------------------- |
