@@ -55,27 +55,26 @@ These events are fired when Home Assistant starts and stops. There is no other d
 
 Note, a user doesn't always wait for Home Assistant to gracefully shut down and so the `home_assistant_stop` event is not always present in the database. To get more information about runs, check out the `recorder_runs` table.
 
-## Database table
+## Database tables
 
-All events are stored in the database in a table named `events`. The important fields for the events table are `event_type`, `time_fired_ts` and `context_id`. That information can be used to figure out what happened when, and how it related to other events.
+All events are stored in the database in a table named `events`. The important fields for the events table are `event_type_id`, `time_fired_ts`, `data_id`, and `context_id_bin`. That information can be used to figure out what happened when, and how it related to other events.
 
-| Field                 | Type                                                          |
-| --------------------- | ------------------------------------------------------------- |
-| event_id              | Column(Integer, primary_key=True)                             |
-| event_type            | Column(String(32))                                            |
-| event_data            | Column(Text)                                                  |
-| origin_idx            | Column(Integer)                                               |
-| time_fired_ts         | Column(Float, index=True)                                     |
-| context_id_bin        | Column(Blob(16), index=True)                                  |
-| context_user_id_bin   | Column(Blob(16))                                              |
-| context_parent_id_bin | Column(Blob(16))                                              |
-| data_id               | Column(Integer, ForeignKey("event_data.data_id"), index=True) |
+| Field                 | Type                                                                 |
+| --------------------- | -------------------------------------------------------------------- |
+| event_id              | Column(Integer, primary_key=True)                                    |
+| origin_idx            | Column(Integer)                                                      |
+| time_fired_ts         | Column(Float, index=True)                                            |
+| context_id_bin        | Column(Blob(16), index=True)                                         |
+| context_user_id_bin   | Column(Blob(16))                                                     |
+| context_parent_id_bin | Column(Blob(16))                                                     |
+| data_id               | Column(Integer, ForeignKey("event_data.data_id"), index=True)        |
+| event_type_id         | Column(Integer, ForeignKey("event_types.event_type_id"), index=True) |
 
 Further details about the [database schema](https://www.home-assistant.io/docs/backend/database/#schema) are available in the official documentation.
 
 The `created` field is no longer stored in the `events` table to avoid duplicating data in the database as it was always the same as `time_fired_ts`.
 
-As many `event_data` fields are the same, event_data is stored in the `event_data` table with many to one relationship:
+As many `event_data` fields are the same, event_data is stored in the `event_data` table with a many to one relationship on `data_id`:
 
 | Field             | Type                                                                 |
 | ----------------- | -------------------------------------------------------------------- |
@@ -83,13 +82,20 @@ As many `event_data` fields are the same, event_data is stored in the `event_dat
 | hash              | Column(BigInteger, index=True)                                       |
 | shared_data       | Column(Text().with_variant(mysql.LONGTEXT, "mysql"))                 |
 
-Below is an example query to find `event_data` that were recordered after the change over to using the `event_data` table.
+The [Example queries](#example-queries) show how to find `event_data` that were recorded after the change over to using the `event_data` table.
+
+As many `event_type` fields are the same, `event_type` is stored in the `event_types` table with a many to one relationship on `event_type_id`:
+
+| Field             | Type                                                                 |
+| ----------------- | -------------------------------------------------------------------- |
+| event_type_id     | Column(Integer, primary_key=True)                                    |
+| event_type        | Column(String(32))                                                   |
 
 ### Indices
 
-| Name                               | Fields                    |
-| ---------------------------------- | ------------------------- |
-| ix_events_event_type_time_fired_ts | event_type, time_fired_ts |
+| Name                                  | Fields                       |
+| ------------------------------------- | ---------------------------- |
+| ix_events_event_type_id_time_fired_ts | event_type_id, time_fired_ts |
 
 ## Example queries
 
@@ -115,4 +121,26 @@ SELECT * FROM events LEFT JOIN event_data ON (events.data_id=event_data.data_id)
 
 ```sql
 select event_id, event_type, datetime(time_fired_ts, 'unixepoch', 'localtime'), hex(context_id_bin), hex(context_parent_id_bin) from events;
+```
+
+### Viewing event data in a human readable format
+
+The below example queries make it easier to review data in the `events` table in a human readable format.
+
+#### SQLite human readable example
+
+```sql
+select event_id, datetime(time_fired_ts, 'unixepoch', 'localtime'), event_types.event_type, shared_data, hex(context_id_bin) from events left join event_data on (events.data_id=event_data.data_id) left join event_types on (events.event_type_id=event_types.event_type_id)
+```
+
+#### MariaDB human readable example
+
+```sql
+select event_id, from_unixtime(time_fired_ts), event_types.event_type, shared_data, hex(context_id_bin) from events left join event_data on (events.data_id=event_data.data_id) left join event_types on (events.event_type_id=event_types.event_type_id)
+```
+
+#### PostgreSQL human readable example
+
+```sql
+select event_id, to_timestamp(time_fired_ts), event_types.event_type, shared_data, context_id_bin from events left join event_data on (events.data_id=event_data.data_id) left join event_types on (events.event_type_id=event_types.event_type_id);
 ```
