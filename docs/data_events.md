@@ -91,6 +91,12 @@ As many `event_type` fields are the same, `event_type` is stored in the `event_t
 | event_type_id     | Column(Integer, primary_key=True)                                    |
 | event_type        | Column(String(32))                                                   |
 
+### Indices
+
+| Name                                  | Fields                       |
+| ------------------------------------- | ---------------------------- |
+| ix_events_event_type_id_time_fired_ts | event_type_id, time_fired_ts |
+
 ## Example queries
 
 ### Finding all events
