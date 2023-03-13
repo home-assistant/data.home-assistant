@@ -19,9 +19,8 @@ The `last_changed_ts` field is not stored in the database when it is the same as
 | Field                 | Type                                                                      |
 | --------------------- | ------------------------------------------------------------------------- |
 | state_id              | Column(Integer, primary_key=True)                                         |
-| entity_id             | Column(String(255))                                                       |
+| metadata_id           | Column(Integer, ForeignKey("states_meta.metadata_id"), index=True)        |
 | state                 | Column(String(255))                                                       |
-| event_id              | Column(Integer, ForeignKey('events.event_id'), index=True)                |
 | last_changed_ts       | Column(Float)                                                             |
 | last_updated_ts       | Column(Float, default=time.time, index=True)                              |
 | old_state_id          | Column(Integer, ForeignKey("states.state_id"), index=True)                |
@@ -41,22 +40,29 @@ As many `attributes` are the same, attributes are stored in the `state_attribute
 | hash              | Column(BigInteger, index=True)                                       |
 | shared_attrs      | Column(Text().with_variant(mysql.LONGTEXT, "mysql"))                 |
 
-Below is an example query to find `attributes` that were recordered after the change over.
+The [Example queries](#example-queries) show how to find `attributes` that were recorded after the change over.
+
+As many `entity_id` fields are the same, `entity_id` is stored in the `states_meta` table with a many to one relationship on `metadata_id`:
+
+| Field             | Type                                                                 |
+| ----------------- | -------------------------------------------------------------------- |
+| metadata_id       | Column(Integer, primary_key=True)                                    |
+| entity_id         | Column(String(255))                                                  |
 
 ### `states` Indices
 
-| Name                                | Fields                     |
-| ----------------------------------- | -------------------------- |
-| ix_states_entity_id_last_updated_ts | entity_id, last_updated_ts |
+| Name                                  | Fields                       |
+| ------------------------------------- | ---------------------------- |
+| ix_states_metadata_id_last_updated_ts | metadata_id, last_updated_ts |
 
 ## Example queries
 
 ### Significant states
 
-Users are usually not so interested in state updates that only changed the attributes. Attribute only changes can be triggered by a light changing color or a media player changing song (which happens every ~3 minutes!). Since we maintain both `last_changed_ts` and `last_updated_ts`, it's easy to filter for just the states where the state was changed:
+Users are usually not so interested in state updates that only changed the attributes. Attribute only changes can be triggered by a light changing color or a media player changing song (which happens every ~3 minutes!). Since `last_changed_ts` is `NULL` when it has not changed, it's easy to filter for just the states where the state was changed:
 
 ```sql
-SELECT * FROM states WHERE last_changed_ts = last_updated_ts
+SELECT states_meta.entity_id, state_attributes.shared_attrs, states.last_updated_ts FROM states LEFT JOIN states_meta ON (states.metadata_id=states_meta.metadata_id) LEFT JOIN state_attributes ON (states.attributes_id=state_attributes.attributes_id) WHERE last_changed_ts is NULL;
 ```
 
 ### Linking a new state to an old state
@@ -64,7 +70,7 @@ SELECT * FROM states WHERE last_changed_ts = last_updated_ts
 After startup, once a state is changed, the id of the old state is stored as `old_state_id`, making it easy to find the previous state.
 
 ```sql
-SELECT * FROM states LEFT JOIN states as old_states ON states.old_state_id = old_states.state_id
+SELECT states_meta.entity_id, states.state_id, old_states.state_id, state_attributes.shared_attrs, states.last_updated_ts FROM states LEFT JOIN states as old_states ON states.old_state_id = old_states.state_id LEFT JOIN states_meta ON (states.metadata_id=states_meta.metadata_id) LEFT JOIN state_attributes ON (states.attributes_id=state_attributes.attributes_id);
 ```
 
 ### Fetching attributes
@@ -72,7 +78,7 @@ SELECT * FROM states LEFT JOIN states as old_states ON states.old_state_id = old
 Attributes are stored in the `state_attributes` table.
 
 ```sql
-SELECT * FROM states LEFT JOIN state_attributes ON states.attributes_id = state_attributes.attributes_id
+SELECT states.state_id, state_attributes.shared_attrs FROM states LEFT JOIN state_attributes ON states.attributes_id = state_attributes.attributes_id
 ```
 
 Attributes can be found in the following order `state_attributes.shared_attrs` or `states.attributes`.
@@ -80,20 +86,42 @@ As new states are recorded `states.attributes` will be phased out.
 
 ### Fetching the last_changed_ts when it is NULL
 
-#### SQLite
+#### Fetching the last changed with SQLite
 
 ```sql
-select entity_id,state,last_updated_ts,iif(last_changed_ts is NULL,last_updated_ts,last_changed_ts) as last_changed_ts from states;
+SELECT states_meta.entity_id, states.state, states.last_updated_ts, iif(states.last_changed_ts IS NULL,states.last_updated_ts,states.last_changed_ts) AS last_changed_ts FROM states LEFT JOIN states_meta ON (states.metadata_id=states_meta.metadata_id);
 ```
 
-#### MySQL & MariaDB
+#### Fetching the last changed with MySQL & MariaDB
 
 ```sql
-select entity_id,state,last_updated_ts,if(last_changed_ts is NULL,last_updated_ts,last_changed_ts) as last_changed_ts from states;
+SELECT states_meta.entity_id, states.state, states.last_updated_ts, if(states.last_changed_ts IS NULL,states.last_updated_ts,states.last_changed_ts) AS last_changed_ts FROM states LEFT JOIN states_meta ON (states.metadata_id=states_meta.metadata_id);
 ```
 
-### PostgreSQL
+#### Fetching the last changed with PostgreSQL
 
 ```sql
-select entity_id,state,last_updated_ts,(case when last_changed_ts is NULL then last_updated_ts else last_changed_ts end) from states;
+SELECT states_meta.entity_id, states.state, states.last_updated_ts, (CASE WHEN states.last_changed_ts IS NULL THEN states.last_updated_ts ELSE states.last_changed_ts END) FROM states LEFT JOIN states_meta ON (states.metadata_id=states_meta.metadata_id);
+```
+
+### Viewing state data in a human readable format
+
+The below example queries make it easier to review data in the `states` table in a human readable format.
+
+#### SQLite human readable example
+
+```sql
+SELECT states.state_id, states_meta.entity_id, DATETIME(last_updated_ts, 'unixepoch', 'localtime'),DATETIME(IIF(states.last_changed_ts IS NULL,states.last_updated_ts,states.last_changed_ts), 'unixepoch', 'localtime'), state_attributes.shared_attrs, hex(states.context_id_bin) FROM states LEFT JOIN states_meta ON (states.metadata_id=states_meta.metadata_id) LEFT JOIN state_attributes ON (states.attributes_id=state_attributes.attributes_id) WHERE last_changed_ts IS NULL;
+```
+
+#### MariaDB human readable example
+
+```sql
+SELECT states.state_id, states_meta.entity_id, from_unixtime(states.last_updated_ts),from_unixtime(if(states.last_changed_ts IS NULL,states.last_updated_ts,states.last_changed_ts)), state_attributes.shared_attrs, hex(states.context_id_bin) FROM states LEFT JOIN states_meta ON (states.metadata_id=states_meta.metadata_id) LEFT JOIN state_attributes ON (states.attributes_id=state_attributes.attributes_id) WHERE last_changed_ts IS NULL;
+```
+
+#### PostgreSQL human readable example
+
+```sql
+SELECT states.state_id, states_meta.entity_id, to_timestamp(states.last_updated_ts),to_timestamp(CASE WHEN states.last_changed_ts IS NULL THEN states.last_updated_ts ELSE states.last_changed_ts END), state_attributes.shared_attrs, states.context_id_bin FROM states LEFT JOIN states_meta ON (states.metadata_id=states_meta.metadata_id) LEFT JOIN state_attributes ON (states.attributes_id=state_attributes.attributes_id) WHERE last_changed_ts IS NULL;
 ```
