@@ -19,7 +19,7 @@ The `last_changed_ts` field is not stored in the database when it is the same as
 | Field                 | Type                                                                      |
 | --------------------- | ------------------------------------------------------------------------- |
 | state_id              | Column(Integer, primary_key=True)                                         |
-| metadata_id           | Column(Integer, ForeignKey("states_meta.metadata_id"), index=True)        |
+| metadata_id           | Column(Integer, ForeignKey("states_meta.metadata_id"))                    |
 | state                 | Column(String(255))                                                       |
 | last_changed_ts       | Column(Float)                                                             |
 | last_updated_ts       | Column(Float, default=time.time, index=True)                              |
