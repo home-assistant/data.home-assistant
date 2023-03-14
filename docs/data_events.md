@@ -68,7 +68,7 @@ All events are stored in the database in a table named `events`. The important f
 | context_user_id_bin   | Column(Blob(16))                                                     |
 | context_parent_id_bin | Column(Blob(16))                                                     |
 | data_id               | Column(Integer, ForeignKey("event_data.data_id"), index=True)        |
-| event_type_id         | Column(Integer, ForeignKey("event_types.event_type_id"), index=True) |
+| event_type_id         | Column(Integer, ForeignKey("event_types.event_type_id"))             |
 
 Further details about the [database schema](https://www.home-assistant.io/docs/backend/database/#schema) are available in the official documentation.
 
@@ -89,7 +89,7 @@ As many `event_type` fields are the same, `event_type` is stored in the `event_t
 | Field             | Type                                                                 |
 | ----------------- | -------------------------------------------------------------------- |
 | event_type_id     | Column(Integer, primary_key=True)                                    |
-| event_type        | Column(String(32))                                                   |
+| event_type        | Column(String(32), index=True)                                       |
 
 ### Indices
 
