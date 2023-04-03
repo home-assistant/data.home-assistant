@@ -120,7 +120,7 @@ SELECT * FROM events LEFT JOIN event_data ON (events.data_id=event_data.data_id)
 #### SQLite context data example
 
 ```sql
-select event_id, event_type, datetime(time_fired_ts, 'unixepoch', 'localtime'), hex(context_id_bin), hex(context_parent_id_bin) from events;
+SELECT event_id, event_type, DATETIME(time_fired_ts, 'unixepoch', 'localtime'), hex(context_id_bin), hex(context_parent_id_bin) FROM events;
 ```
 
 ### Viewing event data in a human readable format
@@ -130,17 +130,17 @@ The below example queries make it easier to review data in the `events` table in
 #### SQLite human readable example
 
 ```sql
-select event_id, datetime(time_fired_ts, 'unixepoch', 'localtime'), event_types.event_type, shared_data, hex(context_id_bin) from events left join event_data on (events.data_id=event_data.data_id) left join event_types on (events.event_type_id=event_types.event_type_id)
+SELECT event_id, DATETIME(time_fired_ts, 'unixepoch', 'localtime'), event_types.event_type, shared_data, hex(context_id_bin) FROM events LEFT JOIN event_data ON (events.data_id=event_data.data_id) LEFT JOIN event_types ON (events.event_type_id=event_types.event_type_id)
 ```
 
 #### MariaDB human readable example
 
 ```sql
-select event_id, from_unixtime(time_fired_ts), event_types.event_type, shared_data, hex(context_id_bin) from events left join event_data on (events.data_id=event_data.data_id) left join event_types on (events.event_type_id=event_types.event_type_id)
+SELECT event_id, from_unixtime(time_fired_ts), event_types.event_type, shared_data, hex(context_id_bin) FROM events LEFT JOIN event_data on (events.data_id=event_data.data_id) LEFT JOIN event_types ON (events.event_type_id=event_types.event_type_id)
 ```
 
 #### PostgreSQL human readable example
 
 ```sql
-select event_id, to_timestamp(time_fired_ts), event_types.event_type, shared_data, context_id_bin from events left join event_data on (events.data_id=event_data.data_id) left join event_types on (events.event_type_id=event_types.event_type_id);
+SELECT event_id, to_timestamp(time_fired_ts), event_types.event_type, shared_data, context_id_bin FROM events LEFT JOIN event_data on (events.data_id=event_data.data_id) LEFT JOIN event_types ON (events.event_type_id=event_types.event_type_id);
 ```

@@ -56,7 +56,7 @@ This table contains the actual data. Depending on the entity type, different dat
 | mean | Column(DOUBLE_TYPE())
 | min | Column(DOUBLE_TYPE())
 | max | Column(DOUBLE_TYPE())
-| last_reset | Column(DATETIME_TYPE)
+| last_reset_ts | Column(DOUBLE_TYPE())
 | state | Column(DOUBLE_TYPE())
 | sum | Column(DOUBLE_TYPE())
 

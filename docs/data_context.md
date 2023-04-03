@@ -25,14 +25,14 @@ Context is not stored in their own table in the database. Instead, each event ro
 
 ## Example queries
 
-### Finding the `context_id` for a `state` in the database.
+### Finding the `context_id` for a `state_changed` event in the database.
 
 ```sql
-SELECT states.entity_id, states.state, events.context_id, events.context_user_id, events.context_parent_id FROM states LEFT JOIN events ON states.event_id = events.event_id
+SELECT states_meta.entity_id, states.state, hex(states.context_id_bin), hex(states.context_user_id_bin), hex(states.context_parent_id_bin) FROM states LEFT JOIN states_meta ON (states.metadata_id=states_meta.metadata_id);
 ```
 
 ### Finding the `context_id` for an `event` in the database.
 
 ```sql
-SELECT events.event_type, events.event_data, events.context_id, events.context_user_id, events.context_parent_id FROM events
+SELECT event_types.event_type, event_data.shared_data, hex(events.context_id_bin), hex(events.context_user_id_bin), hex(events.context_parent_id_bin) FROM events  LEFT JOIN event_data ON (events.data_id=event_data.data_id) LEFT JOIN event_types ON (events.event_type_id=event_types.event_type_id);
 ```
