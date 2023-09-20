@@ -22,7 +22,6 @@
 .buttons {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .features {
@@ -54,4 +53,5 @@ a.heroText{
 }
 .getStarted:hover {
   color: #000000 !important;
+  text-shadow: none;
 }
