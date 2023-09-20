@@ -1,6 +1,6 @@
 module.exports = {
-  title: "Home Assistant",
-  tagline: "Data Science Portal",
+  title: "Home Assistant Data Science Portal",
+  tagline: "The one stop shop to explore the data of your home",
   url: "https://data.home-assistant.io",
   baseUrl: "/",
   favicon: "img/favicon.png",
@@ -11,8 +11,8 @@ module.exports = {
       title: "Data Science",
       logo: {
         alt: "Home Assistant",
-        src: "img/logo-pretty.svg",
-        srcDark: "img/logo-pretty.svg",
+        src: "img/logo.svg",
+        srcDark: "img/logo.svg",
       },
       items: [
         { to: "/docs/data", label: "Docs", position: "left" },
@@ -24,6 +24,7 @@ module.exports = {
       logo: {
         alt: "Home Assistant",
         src: "img/logo-white.svg",
+        height: "30px",
         href: "https://www.home-assistant.io",
       },
       style: "dark",
