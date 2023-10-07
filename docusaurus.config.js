@@ -1,9 +1,9 @@
 module.exports = {
-  title: "Home Assistant",
-  tagline: "Data Science Portal",
+  title: "Home Assistant Data Science Portal",
+  tagline: "The one stop shop to explore the data of your home",
   url: "https://data.home-assistant.io",
   baseUrl: "/",
-  favicon: "img/favicon.png",
+  favicon: "img/brand/favicon.png",
   organizationName: "home-assistant", // Usually your GitHub org/user name.
   projectName: "data.home-assistant", // Usually your repo name.
   themeConfig: {
@@ -11,8 +11,8 @@ module.exports = {
       title: "Data Science",
       logo: {
         alt: "Home Assistant",
-        src: "img/logo-pretty.svg",
-        srcDark: "img/logo-pretty.svg",
+        src: "img/brand/logo.svg",
+        srcDark: "img/brand/logo.svg",
       },
       items: [
         { to: "/docs/data", label: "Docs", position: "left" },
@@ -23,7 +23,8 @@ module.exports = {
     footer: {
       logo: {
         alt: "Home Assistant",
-        src: "img/logo-white.svg",
+        src: "img/brand/logo-white.svg",
+        height: "30px",
         href: "https://www.home-assistant.io",
       },
       style: "dark",
