@@ -11,8 +11,8 @@ module.exports = {
       title: "Data Science",
       logo: {
         alt: "Home Assistant",
-        src: "img/logo.svg",
-        srcDark: "img/logo.svg",
+        src: "img/brand/logo.svg",
+        srcDark: "img/brand/logo.svg",
       },
       items: [
         { to: "/docs/data", label: "Docs", position: "left" },
@@ -23,7 +23,7 @@ module.exports = {
     footer: {
       logo: {
         alt: "Home Assistant",
-        src: "img/logo-white.svg",
+        src: "img/brand/logo-white.svg",
         height: "30px",
         href: "https://www.home-assistant.io",
       },
