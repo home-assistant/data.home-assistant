@@ -3,7 +3,7 @@ module.exports = {
   tagline: "The one stop shop to explore the data of your home",
   url: "https://data.home-assistant.io",
   baseUrl: "/",
-  favicon: "img/favicon.png",
+  favicon: "img/brand/favicon.png",
   organizationName: "home-assistant", // Usually your GitHub org/user name.
   projectName: "data.home-assistant", // Usually your repo name.
   themeConfig: {
