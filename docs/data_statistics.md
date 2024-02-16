@@ -4,7 +4,7 @@ id: "statistics"
 sidebar_label: "Long-term statistics"
 ---
 
-Home Assistant has support for both short- and long-term statistics. For shot-term statistics a snapshot is taken every 5 minutes. It keeps track of supported entities and different elements of the entity state. For long-term statistics, an hourly aggregate is stored of the short-term statistics. Currently two types of entities are differentiated for statistics:
+Home Assistant has support for both short- and long-term statistics. For short-term statistics a snapshot is taken every 5 minutes. It keeps track of supported entities and different elements of the entity state. For long-term statistics, an hourly aggregate is stored of the short-term statistics. Currently two types of entities are differentiated for statistics:
 
 - Sensor entities with a measurement, such as the current temperature. It will store the hourly min, max, and mean value.
 - Sensor entities that are metered, such as the daily energy consumption. It will store the growth of that entity.
