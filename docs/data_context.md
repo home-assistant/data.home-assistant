@@ -4,24 +4,26 @@ id: "context"
 sidebar_label: "Context"
 ---
 
-Context is used to tie events and states together in Home Assistant. Whenever an automation or user interaction triggers a new change, a new context is assigned. This context will be attached to all events and states that happen as result of the change.
-
-In the following example, all events and states will share the same context:
-
--   Paulus arrives home, which updates `device_tracker.paulus_pixel` from `not_home` to `home`
--   The automation "Paulus is home" is triggered and fires `automation_triggered` event.
--   The automation calls service `light.turn_on`, which fires the `service_call` event.
--   The `light.turn_on` service turns on the light which causes an update to the state of `light.living_room`.
+Context is used to tie events and states together in Home Assistant. Whenever anything (e.g. an automation or user interaction) triggers a new change, a new context is assigned. This context will be attached to all events and states that happen as result of the change.
 
 A context object contains the following fields:
 
 | Field            | Description                                                                           |
 | ---------------- | ------------------------------------------------------------------------------------- |
-| context_id       | Unique identifier for the context.                                                    |
-| user_id          | Unique identifier of the user that started the change.                                |
-| parent_id        | Unique identifier of the parent context_id that started the change.                   |
+| id               | Unique identifier for the context.                                                    |
+| user_id          | Unique identifier of the user that started the change, in case it is known to home assistant. This field is most notably populated, if the change is initiatited via the frontend. |
+| parent_id        | Unique identifier of the parent context's id that started the change. Most notably, automations will generate a new context, even if the trigger already has one. Note that, currently, not all triggers generate a context. |
+
+In the following example, all events and states will refer to the same context (either directly in their `context.id` or via `context.parent_id`):
+
+-   Paulus arrives home, which updates `device_tracker.paulus_pixel` from `not_home` to `home`
+-   The automation "Paulus is home" is triggered and fires `automation_triggered` event (with a new `context.id` and a reference to the old `id` in `context.parent_id`).
+-   The automation calls service `light.turn_on`, which fires the `service_call` event.
+-   The `light.turn_on` service turns on the light which causes an update to the state of `light.living_room`.
 
 Context is not stored in their own table in the database. Instead, each event row maintains it's own columns to store context.
+
+Currently, there is no native way to retrieve the original cause of a context from the user-space, i.e., from automations or templates. 
 
 ## Example queries
 
