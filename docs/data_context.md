@@ -4,15 +4,15 @@ id: "context"
 sidebar_label: "Context"
 ---
 
-Context is used to tie events and states together in Home Assistant. Whenever anything (e.g. an automation or user interaction) triggers a new change, a new context is assigned. This context will be attached to all events and states that happen as result of the change.
+Context is used to tie events and states together in Home Assistant. Whenever anything (e.g. an automation or user interaction) triggers a new change, a new context is assigned. This context will be attached to all events and states that happen as result of the change. The context thus allows to internally attribute all changes to their original cause.
 
 A context object contains the following fields:
 
 | Field            | Description                                                                           |
 | ---------------- | ------------------------------------------------------------------------------------- |
 | id               | Unique identifier for the context.                                                    |
-| user_id          | Unique identifier of the user that started the change, in case it is known to home assistant. This field is most notably populated, if the change is initiatited via the frontend. |
-| parent_id        | Unique identifier of the parent context's id that started the change. Most notably, automations will generate a new context, even if the trigger already has one. Note that, currently, not all triggers generate a context. |
+| user_id          | Unique identifier of the user that started the change, in case it is known to home assistant. This field is most notably populated, if the change is initiatited via the frontend. The user_id is used for restricting the ability to access and change the state of your home. |
+| parent_id        | Unique identifier of the parent context's id that started the change. Most notably, automations will generate a new context, even if the trigger already has one. This is done to decouple the automation actions from the user privileges possibly associated to the trigger. Note that, currently, not all triggers generate a context. |
 
 In the following example, all events and states will refer to the same context (either directly in their `context.id` or via `context.parent_id`):
 
