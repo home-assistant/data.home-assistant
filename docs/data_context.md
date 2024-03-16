@@ -4,7 +4,7 @@ id: "context"
 sidebar_label: "Context"
 ---
 
-Context is used to tie events and states together in Home Assistant. Whenever anything (e.g. an automation or user interaction) triggers a new change, a new context is assigned. This context will be attached to all events and states that happen as result of the change. The context thus allows to internally attribute all changes to their original cause.
+Context is used to tie events and states together in Home Assistant. Whenever anything (e.g. an automation or user interaction) triggers a new change, a new context is assigned. This context will be attached to all events and states that happen as result of the change. The context thus allows to attribute all changes to their original cause internally and in the logbook.
 
 A context object contains the following fields:
 
@@ -23,7 +23,7 @@ In the following example, all events and states will refer to the same context (
 
 Context is not stored in their own table in the database. Instead, each event row maintains it's own columns to store context.
 
-Currently, there is no native way to retrieve the original cause of a context from the user-space, i.e., from automations or templates. 
+Currently, there is no native way to retrieve the original cause of a context in automations or templates. 
 
 ## Example queries
 
