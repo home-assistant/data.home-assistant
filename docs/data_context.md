@@ -21,7 +21,7 @@ In the following example, all events and states will refer to the same context (
 -   The automation calls service `light.turn_on`, which fires the `service_call` event.
 -   The `light.turn_on` service turns on the light which causes an update to the state of `light.living_room`.
 
-Context is not stored in their own table in the database. Instead, each event row maintains it's own columns to store context.
+Context is not stored in their own table in the database. Instead, each event row maintains its own columns to store context.
 
 Currently, there is no native way to retrieve the original cause of a context in automations or templates. 
 
