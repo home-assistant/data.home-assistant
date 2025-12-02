@@ -11,7 +11,7 @@ A context object contains the following fields:
 | Field            | Description                                                                           |
 | ---------------- | ------------------------------------------------------------------------------------- |
 | id               | Unique identifier for the context.                                                    |
-| user_id          | Unique identifier of the user that started the change, in case it is known to home assistant. This field is most notably populated, if the change is initiatited via the frontend. The user_id is used for restricting the ability to access and change the state of your home. |
+| user_id          | Unique identifier of the user that started the change, if it is known to home assistant. This field is most notably populated, if the change is initiatited via the frontend. The user_id is used for restricting the ability to access and change the state of your home. |
 | parent_id        | Unique identifier of the parent context's id that started the change. Most notably, automations will generate a new context, even if the trigger already has one. This is done to decouple the automation actions from the user privileges possibly associated to the trigger. Note that, currently, not all triggers generate a context. |
 
 In the following example, all events and states will refer to the same context (either directly in their `context.id` or via `context.parent_id`):
