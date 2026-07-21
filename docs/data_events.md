@@ -109,7 +109,7 @@ SELECT event_type, time_fired_ts, event_data.shared_data as data, NULL as attrib
 
 ### Finding the event_data for events
 
-For events that were recorded after the `event_data` table was created, the data is in the `event_data` table. While there are still older rows in the database, check the `shared_data` field first and fallback to the `event_data` field.
+For events that were recorded after the `event_data` table was created, the data is in the `event_data` table. While there are still older rows in the database, check the `shared_data` field first and fall back to the `event_data` field.
 
 ```sql
 SELECT * FROM events LEFT JOIN event_data ON (events.data_id=event_data.data_id);
