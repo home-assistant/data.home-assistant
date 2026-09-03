@@ -57,7 +57,7 @@ The `statistics_short_term` table stores 5-minute aggregates of the data from th
 | ----------------- | -------------------------------------------------------- |
 | id | Column(Integer, primary_key=True)
 | created_ts | Column(DOUBLE_TYPE(), default=time.time)
-| metadata_id | Column(Integer, ForeignKey(f"{TABLE_STATISTICS_META}.id", ondelete="CASCADE"))
+| metadata_id | `Column(Integer, ForeignKey(f"{TABLE_STATISTICS_META}.id", ondelete="CASCADE"))`
 | start_ts | Column(DOUBLE_TYPE(), index=True)
 | mean | Column(DOUBLE_TYPE())
 | min | Column(DOUBLE_TYPE())
