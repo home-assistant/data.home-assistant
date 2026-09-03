@@ -14,6 +14,9 @@
   # Default build command.
   command = "yarn build"
 
+  [build.environment]
+    NODE_VERSION = "22"
+
 [[redirects]]
   from = "/docs/en/*"
   to = "/docs/:splat"
